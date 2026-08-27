@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&family=Instrument+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #050505; color: #F0E3D8; -webkit-font-smoothing: antialiased; }
+  a { color: #F0E3D8; text-decoration: none; }
+  a:hover { color: #7D906A; }
+  input, textarea, select { font-family: 'Instrument Sans', system-ui, sans-serif; }
+  ::selection { background: #7D906A; color: #050505; }
+  @keyframes p-in { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; background: #050505; color: #F0E3D8; font-family: 'Instrument Sans', system-ui, sans-serif;">
+
+  <header style="position: sticky; top: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: 18px 40px; background: rgba(5,5,5,0.92); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(240,227,216,0.12);">
+    <a href="./BASE - Accueil C - Chapitres.dc.html" style="display: flex; align-items: center;">
+      <img src="./logo-light.png" alt="BASE" style="height: 26px; width: auto; align-self: center; flex: 0 0 auto; object-fit: contain; display: block;" />
+    </a>
+    <nav style="display: flex; align-items: center; gap: 4px;">
+      <sc-for list="{{ tabs }}" as="t" hint-placeholder-count="3">
+        <div onClick="{{ t.go }}" style="padding: 9px 16px; cursor: pointer; border: 1px solid {{ t.border }}; background: {{ t.bg }}; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: {{ t.color }}; transition: all 240ms cubic-bezier(0.16,1,0.3,1);">{{ t.label }}</div>
+      </sc-for>
+      <a href="./BASE - Réservation.dc.html" style="margin-left: 10px; padding: 11px 22px; background: #7D906A; color: #050505; font-size: 10.5px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; transition: background 240ms ease;" style-hover="background: #F0E3D8;">Réserver</a>
+    </nav>
+  </header>
+
+  <sc-if value="{{ isCours }}" hint-placeholder-val="{{ true }}">
+    <div style="animation: p-in 420ms cubic-bezier(0.16,1,0.3,1);">
+      <section style="position: relative; padding: 90px 40px 70px; overflow: hidden; border-bottom: 1px solid rgba(240,227,216,0.12);">
+        <img src="https://images.unsplash.com/photo-1639660299469-9e9279364c97?auto=format&amp;fit=crop&amp;w=2000&amp;q=70" alt="Séance collective" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.26; filter: grayscale(0.6) contrast(1.05);" />
+        <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5,5,5,0.92) 40%, rgba(5,5,5,0.5));"></div>
+        <div style="position: relative; display: flex; flex-direction: column; gap: 20px; max-width: 900px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #7D906A;">Les cours</div>
+          <h1 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 200; font-size: clamp(40px, 6.5vw, 108px); line-height: 0.9; text-transform: uppercase;">Trois collectifs,<br />un privé</h1>
+          <p style="margin: 0; max-width: 620px; font-size: 16.5px; line-height: 1.75; color: rgba(240,227,216,0.68); text-wrap: pretty;">Six personnes maximum. Chaque cours suit une trame précise — échauffement, bloc principal, retour au calme — et la charge est ajustée personne par personne.</p>
+        </div>
+      </section>
+
+      <section style="display: flex; flex-direction: column;">
+        <sc-for list="{{ courses }}" as="c" hint-placeholder-count="4">
+          <div style="display: grid; grid-template-columns: 120px 1fr 380px; gap: 40px; padding: 54px 40px; border-bottom: 1px solid rgba(240,227,216,0.12); background: {{ c.bg }};">
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div style="font-family: 'Jost', sans-serif; font-weight: 200; font-size: 54px; line-height: 1; color: {{ c.accent }};">{{ c.num }}</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.16em; color: rgba(240,227,216,0.4);">{{ c.tag }}</div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 20px;">
+              <h2 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 300; font-size: clamp(26px, 3.2vw, 48px); line-height: 1; letter-spacing: 0.02em; text-transform: uppercase;">{{ c.name }}</h2>
+              <p style="margin: 0; max-width: 620px; font-size: 15.5px; line-height: 1.75; color: rgba(240,227,216,0.7); text-wrap: pretty;">{{ c.body }}</p>
+              <div style="display: flex; flex-wrap: wrap; gap: 2px;">
+                <sc-for list="{{ c.chips }}" as="chip" hint-placeholder-count="3">
+                  <div style="padding: 8px 14px; border: 1px solid rgba(240,227,216,0.16); font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(240,227,216,0.6);">{{ chip.t }}</div>
+                </sc-for>
+              </div>
+            </div>
+            <div style="display: flex; flex-direction: column; gap: 2px;">
+              <sc-for list="{{ c.rows }}" as="r" hint-placeholder-count="4">
+                <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; padding: 13px 16px; border: 1px solid rgba(240,227,216,0.12);">
+                  <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: rgba(240,227,216,0.45);">{{ r.k }}</div>
+                  <div style="font-family: 'Jost', sans-serif; font-size: 17px; color: {{ r.color }};">{{ r.v }}</div>
+                </div>
+              </sc-for>
+              <a href="./BASE - Réservation.dc.html" style="margin-top: 8px; text-align: center; padding: 14px; background: {{ c.ctaBg }}; color: {{ c.ctaFg }}; border: 1px solid {{ c.ctaBorder }}; font-size: 10.5px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; transition: all 240ms ease;">{{ c.cta }}</a>
+            </div>
+          </div>
+        </sc-for>
+      </section>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isTarifs }}" hint-placeholder-val="{{ false }}">
+    <div style="animation: p-in 420ms cubic-bezier(0.16,1,0.3,1);">
+      <section style="padding: 90px 40px 60px; background: #F0E3D8; color: #141311;">
+        <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 34px; flex-wrap: wrap; margin-bottom: 44px;">
+          <div style="display: flex; flex-direction: column; gap: 18px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #48543E;">Tarifs</div>
+            <h1 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 200; font-size: clamp(40px, 6.5vw, 108px); line-height: 0.9; text-transform: uppercase;">À la séance.<br />Point.</h1>
+          </div>
+          <p style="margin: 0; max-width: 360px; font-size: 15px; line-height: 1.7; color: rgba(20,19,17,0.65); text-wrap: pretty;">Aucun abonnement, aucune adhésion, aucun frais de dossier. Le code PERFORM10 retire 10 % dès quatre séances réservées ensemble.</p>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2px;">
+          <sc-for list="{{ prices }}" as="p" hint-placeholder-count="4">
+            <div style="padding: 34px 30px; background: {{ p.bg }}; color: {{ p.fg }}; outline: 1px solid rgba(20,19,17,0.14); display: flex; flex-direction: column; gap: 18px; min-height: 320px;">
+              <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px;">
+                <div style="font-family: 'Jost', sans-serif; font-size: 17px; letter-spacing: 0.1em; text-transform: uppercase;">{{ p.name }}</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; opacity: 0.6;">{{ p.badge }}</div>
+              </div>
+              <div style="font-family: 'Jost', sans-serif; font-weight: 200; font-size: 62px; line-height: 0.85;">{{ p.price }}</div>
+              <div style="height: 7px; background-image: repeating-conic-gradient({{ p.motif }} 0% 25%, transparent 0% 50%); background-size: 4px 4px;"></div>
+              <p style="margin: 0; font-size: 13.5px; line-height: 1.7; opacity: 0.72; text-wrap: pretty;">{{ p.detail }}</p>
+              <a href="./BASE - Réservation.dc.html" style="margin-top: auto; text-align: center; padding: 14px; background: {{ p.ctaBg }}; color: {{ p.ctaFg }}; border: 1px solid {{ p.ctaBorder }}; font-size: 10.5px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;">{{ p.cta }}</a>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="padding: 70px 40px 90px; display: grid; grid-template-columns: 1fr 1fr; gap: 60px;">
+        <div style="display: flex; flex-direction: column; gap: 22px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #7D906A;">Ce qui est compris</div>
+          <sc-for list="{{ included }}" as="i" hint-placeholder-count="5">
+            <div style="display: grid; grid-template-columns: 26px 1fr; gap: 16px; align-items: baseline; padding-bottom: 16px; border-bottom: 1px solid rgba(240,227,216,0.1);">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #7D906A;">{{ i.num }}</div>
+              <div style="font-size: 15px; line-height: 1.65; color: rgba(240,227,216,0.75); text-wrap: pretty;">{{ i.t }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 22px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #7D906A;">Questions fréquentes</div>
+          <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="4">
+            <div onClick="{{ f.toggle }}" style="padding: 20px 22px; border: 1px solid {{ f.border }}; cursor: pointer; display: flex; flex-direction: column; gap: 10px; transition: border-color 240ms ease;">
+              <div style="display: flex; align-items: center; justify-content: space-between; gap: 14px;">
+                <div style="font-family: 'Jost', sans-serif; font-size: 17px; color: {{ f.color }};">{{ f.q }}</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #7D906A; transform: {{ f.rot }}; transition: transform 320ms cubic-bezier(0.16,1,0.3,1);">+</div>
+              </div>
+              <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+                <p style="margin: 0; font-size: 14px; line-height: 1.7; color: rgba(240,227,216,0.6); text-wrap: pretty;">{{ f.a }}</p>
+              </sc-if>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ isContact }}" hint-placeholder-val="{{ false }}">
+    <div style="animation: p-in 420ms cubic-bezier(0.16,1,0.3,1);">
+      <section style="display: grid; grid-template-columns: 1.05fr 0.95fr; align-items: stretch; min-height: 78vh; border-bottom: 1px solid rgba(240,227,216,0.12);">
+        <div style="padding: 90px 40px; display: flex; flex-direction: column; gap: 34px;">
+          <div style="display: flex; flex-direction: column; gap: 18px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #7D906A;">Contact</div>
+            <h1 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 200; font-size: clamp(38px, 5.6vw, 92px); line-height: 0.92; text-transform: uppercase;">Le studio,<br />Seignosse</h1>
+            <p style="margin: 0; max-width: 480px; font-size: 16px; line-height: 1.75; color: rgba(240,227,216,0.68); text-wrap: pretty;">Installé au sein d'un centre thérapeutique, à cinq minutes de l'océan. Parking sur place, vestiaire et douche accessibles avant et après la séance.</p>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 2px;">
+            <sc-for list="{{ infos }}" as="i" hint-placeholder-count="4">
+              <div style="padding: 22px 20px; border: 1px solid rgba(240,227,216,0.14); display: flex; flex-direction: column; gap: 9px;">
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 8.5px; letter-spacing: 0.16em; color: rgba(240,227,216,0.45);">{{ i.k }}</div>
+                <div style="font-family: 'Jost', sans-serif; font-size: 19px; line-height: 1.3;">{{ i.v }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(240,227,216,0.45);">Horaires d'ouverture</div>
+            <sc-for list="{{ hours }}" as="h" hint-placeholder-count="3">
+              <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 20px; padding-bottom: 11px; border-bottom: 1px solid rgba(240,227,216,0.1);">
+                <div style="font-size: 14.5px; color: rgba(240,227,216,0.72);">{{ h.d }}</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: {{ h.color }};">{{ h.t }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 2px; padding: 90px 40px 90px 0;">
+          <div style="padding: 32px; border: 1px solid rgba(240,227,216,0.14); background: rgba(240,227,216,0.03); display: flex; flex-direction: column; gap: 18px;">
+            <div style="font-family: 'Jost', sans-serif; font-weight: 300; font-size: 26px; letter-spacing: 0.02em; text-transform: uppercase;">Écrire à Lisa</div>
+            <sc-for list="{{ formFields }}" as="f" hint-placeholder-count="3">
+              <label style="display: flex; flex-direction: column; gap: 8px; padding: 15px 17px; border: 1px solid {{ f.border }};">
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; color: {{ f.labelColor }};">{{ f.label }}</span>
+                <input value="{{ f.value }}" onChange="{{ f.onChange }}" placeholder="{{ f.placeholder }}" style="border: 0; outline: 0; background: transparent; color: #F0E3D8; font-size: 15.5px; padding: 0;" />
+              </label>
+            </sc-for>
+            <label style="display: flex; flex-direction: column; gap: 8px; padding: 15px 17px; border: 1px solid rgba(240,227,216,0.14);">
+              <span style="font-family: 'JetBrains Mono', monospace; font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(240,227,216,0.45);">Votre message</span>
+              <textarea rows="4" value="{{ msgValue }}" onChange="{{ msgChange }}" placeholder="Objectif, niveau, contraintes d'horaires…" style="border: 0; outline: 0; background: transparent; color: #F0E3D8; font-size: 15.5px; padding: 0; resize: vertical;"></textarea>
+            </label>
+            <div onClick="{{ send }}" style="text-align: center; padding: 15px; cursor: pointer; background: {{ sendBg }}; color: {{ sendFg }}; font-size: 10.5px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; transition: all 240ms ease;">{{ sendLabel }}</div>
+            <div style="font-size: 12.5px; line-height: 1.6; color: rgba(240,227,216,0.42);">Réponse sous 24 h ouvrées. Pour une réservation immédiate, passez directement par le planning.</div>
+          </div>
+
+          <div style="position: relative; min-height: 260px; border: 1px solid rgba(240,227,216,0.14); overflow: hidden;">
+            <img src="https://images.unsplash.com/photo-1545612036-2872840642dc?auto=format&amp;fit=crop&amp;w=1200&amp;q=60" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.16; filter: grayscale(1);" />
+            <div style="position: absolute; inset: 0; background-image: repeating-linear-gradient(0deg, rgba(240,227,216,0.07) 0 1px, transparent 1px 44px), repeating-linear-gradient(90deg, rgba(240,227,216,0.07) 0 1px, transparent 1px 44px);"></div>
+            <div style="position: absolute; left: 46%; top: 50%; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 10px;">
+              <div style="width: 12px; height: 12px; border-radius: 50%; background: #7D906A; box-shadow: 0 0 0 8px rgba(125,144,106,0.16);"></div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,227,216,0.7);">2 rue de l'Estanh</div>
+            </div>
+            <div style="position: absolute; bottom: 14px; left: 16px; font-family: 'JetBrains Mono', monospace; font-size: 8.5px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(240,227,216,0.4);">Emplacement — carte interactive à intégrer</div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </sc-if>
+
+  <footer style="padding: 40px; border-top: 1px solid rgba(240,227,216,0.12); display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(240,227,216,0.4);">
+    <div>2 rue de l'Estanh · 40510 Seignosse · 06 18 01 90 26</div>
+    <div style="display: flex; gap: 20px;">
+      <a href="./BASE - Accueil C - Chapitres.dc.html" style="color: rgba(240,227,216,0.4);">Accueil</a>
+      <a href="./BASE - Réservation.dc.html" style="color: rgba(240,227,216,0.4);">Réserver</a>
+      <a href="#" style="color: rgba(240,227,216,0.4);">Instagram</a>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:980}}">
+const SAGE = '#7D906A';
+const CREAM = '#F0E3D8';
+const INK = '#141311';
+
+class Component extends DCLogic {
+  state = { tab: 0, faq: -1, form: { nom: '', email: '', tel: '', msg: '' }, sent: false };
+
+  setF(k, v) { this.setState((s) => ({ form: Object.assign({}, s.form, { [k]: v }), sent: false })); }
+
+  renderVals() {
+    const st = this.state;
+    const labels = ['Les cours', 'Tarifs', 'Contact'];
+
+    const courses = [
+      { num: '01', tag: 'COLLECTIF', name: 'Fullbody Activation', accent: SAGE,
+        body: "Renforcement musculaire global : haut du corps, bas du corps, sangle abdominale. On tonifie, on travaille la posture et la mobilité, on prévient les blessures. Le cours d'entrée idéal si vous reprenez après une pause.",
+        chips: ['Tous niveaux', 'Posture', 'Mobilité'], dur: '45 min / 1 h', cap: '6 personnes', price: '13€' },
+      { num: '02', tag: 'COLLECTIF', name: 'IntenseTraining', accent: '#A79483',
+        body: "Quarante-cinq minutes denses, force et cardio associés. Circuits courts, temps de récupération maîtrisés, charge ajustée à chacun. Le cours le plus exigeant du planning.",
+        chips: ['Intermédiaire', 'Cardio', 'Force'], dur: '45 min', cap: '6 personnes', price: '13€' },
+      { num: '03', tag: 'COLLECTIF', name: '100% Fessiers / Cuisses', accent: SAGE,
+        body: "Session entièrement dédiée au bas du corps : renforcer et tonifier la chaîne antérieure et postérieure, gagner en volume et en stabilité. Charges libres et élastiques.",
+        chips: ['Tous niveaux', 'Bas du corps', 'Volume'], dur: '45 min', cap: '6 personnes', price: '13€' },
+      { num: '04', tag: 'PRIVÉ', name: 'Coaching privé', accent: '#F0E3D8',
+        body: "Séance 100 % personnalisée : perte de poids, remise en forme, préparation physique, travail postural, prise de masse. Bilan initial, plan de progression, suivi séance après séance. Duo sur demande.",
+        chips: ['Sur objectif', 'Individuel ou duo', 'Suivi'], dur: '1 h', cap: 'Individuel ou duo', price: '30€' }
+    ];
+
+    const faqData = [
+      { q: 'Faut-il un compte pour réserver ?', a: "Non. Nom, e-mail et téléphone suffisent. Le compte sert seulement à retrouver vos réservations et votre historique." },
+      { q: 'Comment marche PERFORM10 ?', a: "Dès quatre séances réservées dans la même commande, le code applique 10 % de remise sur le total." },
+      { q: 'Je débute, quel cours choisir ?', a: "Fullbody Activation. Lisa vous orientera ensuite selon vos objectifs, votre niveau et vos contraintes." },
+      { q: "Et si j'annule ?", a: "Annulation ou report gratuits jusqu'à 12 h avant la séance. Au-delà, la séance est due." }
+    ];
+
+    return {
+      tabs: labels.map((label, i) => ({
+        label,
+        go: () => { this.setState({ tab: i }); window.scrollTo({ top: 0, behavior: 'smooth' }); },
+        border: st.tab === i ? SAGE : 'rgba(240,227,216,0.14)',
+        bg: st.tab === i ? 'rgba(125,144,106,0.12)' : 'transparent',
+        color: st.tab === i ? CREAM : 'rgba(240,227,216,0.5)'
+      })),
+      isCours: st.tab === 0, isTarifs: st.tab === 1, isContact: st.tab === 2,
+
+      courses: courses.map((c, i) => ({
+        num: c.num, tag: c.tag, name: c.name, body: c.body, accent: c.accent,
+        bg: i % 2 === 1 ? 'rgba(240,227,216,0.02)' : 'transparent',
+        chips: c.chips.map((t) => ({ t })),
+        rows: [
+          { k: 'DURÉE', v: c.dur, color: CREAM },
+          { k: 'GROUPE', v: c.cap, color: CREAM },
+          { k: 'TARIF', v: c.price, color: SAGE },
+          { k: 'AVEC', v: 'Lisa', color: CREAM }
+        ],
+        cta: c.tag === 'PRIVÉ' ? 'Réserver un privé' : 'Voir les créneaux',
+        ctaBg: c.tag === 'PRIVÉ' ? SAGE : 'transparent',
+        ctaFg: c.tag === 'PRIVÉ' ? '#050505' : CREAM,
+        ctaBorder: c.tag === 'PRIVÉ' ? SAGE : 'rgba(240,227,216,0.25)'
+      })),
+
+      prices: [
+        { name: 'Séance', badge: 'COLLECTIF · 6 MAX', price: '13€', detail: "Une séance au choix parmi les trois cours collectifs, 45 min à 1 h.", bg: 'transparent', fg: INK, motif: 'rgba(20,19,17,0.45)', ctaBg: 'transparent', ctaFg: INK, ctaBorder: 'rgba(20,19,17,0.3)', cta: 'Réserver' },
+        { name: '4 séances', badge: 'CODE PERFORM10', price: '46,80€', detail: "Quatre séances collectives avec 10 % de remise appliquée par le code PERFORM10.", bg: INK, fg: CREAM, motif: SAGE, ctaBg: SAGE, ctaFg: INK, ctaBorder: SAGE, cta: 'Réserver 4 séances' },
+        { name: 'Coaching privé', badge: 'INDIVIDUEL', price: '30€', detail: "Une heure construite autour de votre objectif, bilan et plan de progression inclus.", bg: 'transparent', fg: INK, motif: 'rgba(20,19,17,0.45)', ctaBg: 'transparent', ctaFg: INK, ctaBorder: 'rgba(20,19,17,0.3)', cta: 'Réserver' },
+        { name: 'Privé en duo', badge: 'SUR DEMANDE', price: '45€', detail: "La même heure encadrée, à deux. Tarif par séance, à partager entre les participants.", bg: 'transparent', fg: INK, motif: 'rgba(20,19,17,0.45)', ctaBg: 'transparent', ctaFg: INK, ctaBorder: 'rgba(20,19,17,0.3)', cta: 'En parler' }
+      ],
+
+      included: [
+        { num: '01', t: "Le matériel complet : charges libres, élastiques, tapis, machines de musculation haut de gamme." },
+        { num: '02', t: "Un groupe de six personnes maximum, pour que chaque mouvement soit vu et corrigé." },
+        { num: '03', t: "L'adaptation de la charge à votre niveau, même à l'intérieur du cours collectif." },
+        { num: '04', t: "Vestiaire et douche, accessibles avant et après la séance." },
+        { num: '05', t: "L'annulation gratuite jusqu'à 12 h avant le cours, sans justificatif." }
+      ],
+
+      faqs: faqData.map((f, i) => {
+        const open = st.faq === i;
+        return {
+          q: f.q, a: f.a, open,
+          toggle: () => this.setState({ faq: open ? -1 : i }),
+          color: open ? CREAM : 'rgba(240,227,216,0.78)',
+          border: open ? 'rgba(125,144,106,0.45)' : 'rgba(240,227,216,0.12)',
+          rot: open ? 'rotate(45deg)' : 'rotate(0deg)'
+        };
+      }),
+
+      infos: [
+        { k: 'ADRESSE', v: "2 rue de l'Estanh, 40510 Seignosse" },
+        { k: 'TÉLÉPHONE', v: '06 18 01 90 26' },
+        { k: 'E-MAIL', v: 'contact@base-seignosse.fr' },
+        { k: 'ACCÈS', v: 'Parking sur place · vestiaire et douche' }
+      ],
+      hours: [
+        { d: 'Lundi — vendredi', t: '07:00 — 20:30', color: SAGE },
+        { d: 'Samedi', t: '09:00 — 13:00', color: SAGE },
+        { d: 'Dimanche', t: 'Fermé', color: 'rgba(240,227,216,0.4)' }
+      ],
+      formFields: [
+        { label: 'Nom et prénom', placeholder: 'Camille Lartigue', value: st.form.nom, onChange: (e) => this.setF('nom', e.target.value), border: st.form.nom ? 'rgba(125,144,106,0.5)' : 'rgba(240,227,216,0.14)', labelColor: st.form.nom ? SAGE : 'rgba(240,227,216,0.45)' },
+        { label: 'E-mail', placeholder: 'camille@exemple.fr', value: st.form.email, onChange: (e) => this.setF('email', e.target.value), border: st.form.email ? 'rgba(125,144,106,0.5)' : 'rgba(240,227,216,0.14)', labelColor: st.form.email ? SAGE : 'rgba(240,227,216,0.45)' },
+        { label: 'Téléphone', placeholder: '06 00 00 00 00', value: st.form.tel, onChange: (e) => this.setF('tel', e.target.value), border: st.form.tel ? 'rgba(125,144,106,0.5)' : 'rgba(240,227,216,0.14)', labelColor: st.form.tel ? SAGE : 'rgba(240,227,216,0.45)' }
+      ],
+      msgValue: st.form.msg,
+      msgChange: (e) => this.setF('msg', e.target.value),
+      send: () => { if (st.form.nom && st.form.email) this.setState({ sent: true }); },
+      sendLabel: st.sent ? 'Message envoyé ✓' : 'Envoyer',
+      sendBg: st.form.nom && st.form.email ? SAGE : 'rgba(240,227,216,0.14)',
+      sendFg: st.form.nom && st.form.email ? '#050505' : 'rgba(240,227,216,0.45)'
+    };
+  }
+}
+</script>
+</body>
+</html>

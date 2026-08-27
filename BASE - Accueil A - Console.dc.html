@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  body { margin: 0; background: #050505; color: #F0E3D8; -webkit-font-smoothing: antialiased; }
+  a { color: #F0E3D8; text-decoration: none; }
+  a:hover { color: #7D906A; }
+  ::selection { background: #7D906A; color: #050505; }
+  @keyframes a-blink { 0%,100% { opacity: 1; } 50% { opacity: 0.15; } }
+  @keyframes a-slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+</style>
+</helmet>
+
+<div style="display: grid; grid-template-columns: 344px 1fr; min-height: 100vh; background: #050505; color: #F0E3D8; font-family: 'Instrument Sans', system-ui, sans-serif;">
+
+  <aside style="position: sticky; top: 0; align-self: start; height: 100vh; display: flex; flex-direction: column; justify-content: space-between; gap: 24px; padding: 34px 30px; background: #A79483; color: #141311; overflow: hidden;">
+    <div style="display: flex; flex-direction: column; gap: 34px;">
+      <img src="./logo-dark.png" alt="BASE — Coaching · Mouvement · Performance" style="width: 100%; max-width: 250px; height: auto; display: block;" />
+      <div style="display: flex; flex-direction: column;">
+        <sc-for list="{{ nav }}" as="n" hint-placeholder-count="6">
+          <a href="{{ n.href }}" style="display: grid; grid-template-columns: 34px 1fr auto; align-items: center; gap: 10px; padding: 12px 0; border-top: 1px solid rgba(20,19,17,0.22); color: #141311; font-family: 'Jost', sans-serif; font-size: 17px; letter-spacing: 0.1em; text-transform: uppercase; transition: padding-left 240ms cubic-bezier(0.16,1,0.3,1), color 240ms ease;" style-hover="padding-left: 10px; color: #3E4632;">
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: rgba(20,19,17,0.5);">{{ n.num }}</span>
+            <span>{{ n.label }}</span>
+            <span style="font-family: 'JetBrains Mono', monospace; font-size: 11px; color: rgba(20,19,17,0.45);">{{ n.hint }}</span>
+          </a>
+        </sc-for>
+      </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; gap: 16px;">
+      <div style="padding: 16px 18px; background: #141311; color: #F0E3D8; border-radius: 2px; display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(240,227,216,0.5);">PANIER</div>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <div style="width: 5px; height: 5px; border-radius: 50%; background: #7D906A; animation: a-blink 2s ease-in-out infinite;"></div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: #7D906A;">LIVE</div>
+          </div>
+        </div>
+        <div style="font-family: 'Jost', sans-serif; font-size: 19px; letter-spacing: 0.06em; text-transform: uppercase; line-height: 1.15;">{{ cart.title }}</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.08em; color: #7D906A;">{{ cart.when }}</div>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding-top: 10px; border-top: 1px solid rgba(240,227,216,0.14);">
+          <div style="display: flex; align-items: center; gap: 2px;">
+            <div onClick="{{ dec }}" style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(240,227,216,0.2); cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 13px; transition: all 200ms ease;" style-hover="border-color: #7D906A; color: #7D906A;">−</div>
+            <div style="width: 34px; height: 28px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(240,227,216,0.2); font-family: 'JetBrains Mono', monospace; font-size: 13px;">{{ qty }}</div>
+            <div onClick="{{ inc }}" style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(240,227,216,0.2); cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 13px; transition: all 200ms ease;" style-hover="border-color: #7D906A; color: #7D906A;">+</div>
+          </div>
+          <div style="font-family: 'Jost', sans-serif; font-weight: 300; font-size: 28px;">{{ cart.total }}</div>
+        </div>
+        <div onClick="{{ applyPromo }}" style="text-align: center; padding: 9px; border: 1px dashed {{ promoBorder }}; border-radius: 2px; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: {{ promoColor }};">{{ promoLabel }}</div>
+        <a href="#reserver" style="text-align: center; padding: 13px; background: #7D906A; color: #050505; border-radius: 2px; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; transition: background 240ms ease;" style-hover="background: #F0E3D8; color: #050505;">Ajouter au panier</a>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 3px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: rgba(20,19,17,0.65);">
+        <div>2 RUE DE L'ESTANH · SEIGNOSSE</div>
+        <div>06 18 01 90 26</div>
+      </div>
+    </div>
+  </aside>
+
+  <main style="min-width: 0;">
+
+    <section id="planning" data-screen-label="Hero planning" style="padding: 56px 48px 40px; border-bottom: 1px solid rgba(240,227,216,0.12);">
+      <div style="display: flex; align-items: flex-start; justify-content: space-between; gap: 40px; flex-wrap: wrap; margin-bottom: 40px;">
+        <h1 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 300; font-size: clamp(44px, 6.2vw, 104px); line-height: 0.9; letter-spacing: 0.005em; text-transform: uppercase;">Réservez<br />votre <span style="color: #7D906A;">semaine</span>.</h1>
+        <div style="display: flex; flex-direction: column; gap: 14px; max-width: 320px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #7D906A;">SEIGNOSSE · SMALLGROUPS DE 6</div>
+          <p style="margin: 0; font-size: 15px; line-height: 1.7; color: rgba(240,227,216,0.65); text-wrap: pretty;">Le planning est la page d'accueil. Vous voyez les places restantes en direct, vous choisissez, vous payez. 13 € la séance, 30 € le coaching privé.</p>
+        </div>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px; margin-bottom: 2px;">
+        <sc-for list="{{ week }}" as="d" hint-placeholder-count="6">
+          <div onClick="{{ d.pick }}" style="padding: 14px 12px; display: flex; align-items: baseline; justify-content: space-between; gap: 8px; cursor: pointer; border: 1px solid {{ d.border }}; background: {{ d.bg }}; transition: all 240ms cubic-bezier(0.16,1,0.3,1);">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: rgba(240,227,216,0.5);">{{ d.day }}</div>
+            <div style="font-family: 'Jost', sans-serif; font-size: 24px; color: {{ d.fg }};">{{ d.num }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <sc-for list="{{ slots }}" as="s" hint-placeholder-count="4">
+          <div onClick="{{ s.pick }}" style="display: grid; grid-template-columns: 92px 1fr 200px 130px; align-items: center; gap: 20px; padding: 22px 24px; cursor: {{ s.cursor }}; border: 1px solid {{ s.border }}; background: {{ s.bg }}; opacity: {{ s.opacity }}; transition: all 240ms cubic-bezier(0.16,1,0.3,1);">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 20px;">{{ s.time }}</div>
+            <div style="display: flex; flex-direction: column; gap: 5px; min-width: 0;">
+              <div style="font-family: 'Jost', sans-serif; font-size: 22px; letter-spacing: 0.06em; text-transform: uppercase;">{{ s.name }}</div>
+              <div style="font-size: 12px; color: rgba(240,227,216,0.45);">{{ s.meta }}</div>
+            </div>
+            <div style="display: flex; gap: 3px; align-items: center;">
+              <sc-for list="{{ s.seats }}" as="seat" hint-placeholder-count="6">
+                <div style="width: 14px; height: 14px; background: {{ seat.bg }}; border: 1px solid {{ seat.border }};"></div>
+              </sc-for>
+            </div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; text-align: right; color: {{ s.statusColor }};">{{ s.status }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <div style="overflow: hidden; white-space: nowrap; padding: 14px 0; background: #7D906A;">
+      <div style="display: inline-flex; gap: 40px; animation: a-slide 28s linear infinite; font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: 0.24em; text-transform: uppercase; color: #141311;">
+        <span>4 séances = -10% code PERFORM10</span><span>·</span><span>6 personnes maximum</span><span>·</span><span>Annulation en ligne</span><span>·</span>
+        <span>4 séances = -10% code PERFORM10</span><span>·</span><span>6 personnes maximum</span><span>·</span><span>Annulation en ligne</span><span>·</span>
+        <span>4 séances = -10% code PERFORM10</span><span>·</span><span>6 personnes maximum</span><span>·</span><span>Annulation en ligne</span><span>·</span>
+      </div>
+    </div>
+
+    <section id="cours" data-screen-label="Cours" style="padding: 56px 48px; border-bottom: 1px solid rgba(240,227,216,0.12);">
+      <div style="display: flex; align-items: baseline; gap: 18px; margin-bottom: 30px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #7D906A;">02</div>
+        <h2 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 44px; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase;">Les cours</h2>
+      </div>
+      <div style="display: flex; flex-direction: column;">
+        <sc-for list="{{ courses }}" as="c" hint-placeholder-count="4">
+          <div onClick="{{ c.toggle }}" style="border-top: 1px solid rgba(240,227,216,0.14); padding: 24px 4px; cursor: pointer;">
+            <div style="display: grid; grid-template-columns: 40px 1fr 150px 130px 30px; align-items: center; gap: 20px;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: rgba(240,227,216,0.4);">{{ c.num }}</div>
+              <div style="font-family: 'Jost', sans-serif; font-size: 30px; letter-spacing: 0.03em; text-transform: uppercase; color: {{ c.color }}; transition: color 240ms ease;">{{ c.name }}</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: rgba(240,227,216,0.5);">{{ c.dur }}</div>
+              <div style="font-family: 'Jost', sans-serif; font-size: 24px; color: #7D906A;">{{ c.price }}</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 15px; text-align: right; color: #7D906A; transform: {{ c.rot }}; transition: transform 320ms cubic-bezier(0.16,1,0.3,1);">+</div>
+            </div>
+            <sc-if value="{{ c.open }}" hint-placeholder-val="{{ false }}">
+              <div style="display: grid; grid-template-columns: 1fr 300px; gap: 30px; align-items: start; padding: 22px 0 6px 60px;">
+                <div style="display: flex; flex-direction: column; gap: 16px;">
+                  <p style="margin: 0; max-width: 560px; font-size: 15px; line-height: 1.75; color: rgba(240,227,216,0.65); text-wrap: pretty;">{{ c.body }}</p>
+                  <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                    <sc-for list="{{ c.tags }}" as="t" hint-placeholder-count="3">
+                      <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; padding: 7px 12px; border: 1px solid rgba(240,227,216,0.2); border-radius: 999px; color: rgba(240,227,216,0.6);">{{ t }}</div>
+                    </sc-for>
+                  </div>
+                </div>
+                <div style="position: relative; aspect-ratio: 4/3; border: 1px solid rgba(240,227,216,0.14);">
+                  <image-slot id="{{ c.slot }}" shape="rect" placeholder="Photo du cours" style="position: absolute; inset: 0;"></image-slot>
+                </div>
+              </div>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section id="tarifs" data-screen-label="Tarifs" style="padding: 56px 48px; background: #F0E3D8; color: #141311;">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; flex-wrap: wrap; margin-bottom: 34px;">
+        <div style="display: flex; align-items: baseline; gap: 18px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #48543E;">03</div>
+          <h2 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 44px; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase;">Tarifs</h2>
+        </div>
+        <p style="margin: 0; max-width: 380px; font-size: 14px; line-height: 1.65; color: rgba(20,19,17,0.6); text-wrap: pretty;">À la séance, sans abonnement. Le code PERFORM10 enlève 10 % dès quatre séances réservées.</p>
+      </div>
+      <div style="display: flex; flex-direction: column;">
+        <sc-for list="{{ prices }}" as="p" hint-placeholder-count="3">
+          <div style="display: grid; grid-template-columns: 1fr 220px 150px; align-items: center; gap: 24px; padding: 26px 4px; border-top: 1px solid rgba(20,19,17,0.2); transition: padding-left 240ms cubic-bezier(0.16,1,0.3,1);" style-hover="padding-left: 14px;">
+            <div style="font-family: 'Jost', sans-serif; font-size: 32px; letter-spacing: 0.04em; text-transform: uppercase;">{{ p.name }}</div>
+            <div style="font-size: 13px; line-height: 1.6; color: rgba(20,19,17,0.6);">{{ p.detail }}</div>
+            <div style="text-align: right; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 46px;">{{ p.price }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section id="coach" data-screen-label="Coach et studio" style="padding: 56px 48px; border-bottom: 1px solid rgba(240,227,216,0.12);">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start;">
+        <div style="display: flex; flex-direction: column; gap: 22px;">
+          <div style="display: flex; align-items: baseline; gap: 18px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #7D906A;">04</div>
+            <h2 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 44px; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase;">Lisa</h2>
+          </div>
+          <p style="margin: 0; max-width: 460px; font-size: 16px; line-height: 1.75; color: rgba(240,227,216,0.7); text-wrap: pretty;">Originaire de la région bordelaise, passée par le pôle athlétisme de Talence comme sportive de haut niveau, diplômée BPJEPS mention cours collectifs et haltérophilie. Spécialisée en remise en forme et préparation physique.</p>
+          <p style="margin: 0; max-width: 460px; font-size: 14px; line-height: 1.75; color: rgba(240,227,216,0.5); text-wrap: pretty;">Le studio est installé au sein d'un centre thérapeutique à Seignosse, équipé en matériel de fitness et de musculation haut de gamme. Suivant vos attentes, votre coach vous dirige vers le cours le plus adapté.</p>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 8px;">
+            <sc-for list="{{ facts }}" as="f" hint-placeholder-count="3">
+              <div style="padding: 18px 16px; border: 1px solid rgba(240,227,216,0.14); display: flex; flex-direction: column; gap: 6px;">
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #7D906A;">{{ f.v }}</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; color: rgba(240,227,216,0.45);">{{ f.k }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2px;">
+          <div style="position: relative; aspect-ratio: 3/4; border: 1px solid rgba(240,227,216,0.14);">
+            <image-slot id="a-coach" shape="rect" placeholder="Portrait Lisa" style="position: absolute; inset: 0;"></image-slot>
+          </div>
+          <div style="position: relative; aspect-ratio: 3/4; border: 1px solid rgba(125,144,106,0.4);">
+            <image-slot id="a-studio" shape="rect" placeholder="Le studio" style="position: absolute; inset: 0;"></image-slot>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="avis" data-screen-label="Avis et FAQ" style="padding: 56px 48px;">
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;">
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <div style="display: flex; align-items: baseline; gap: 18px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #7D906A;">05</div>
+            <h2 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 36px; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase;">Ils y sont</h2>
+          </div>
+          <sc-for list="{{ quotes }}" as="q" hint-placeholder-count="3">
+            <div style="padding: 22px 24px; border: 1px solid rgba(240,227,216,0.12); display: flex; flex-direction: column; gap: 12px; transition: background 240ms ease;" style-hover="background: rgba(125,144,106,0.07);">
+              <div style="font-family: 'Jost', sans-serif; font-size: 18px; line-height: 1.45; color: rgba(240,227,216,0.9);">« {{ q.text }} »</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: rgba(240,227,216,0.45);">{{ q.meta }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 24px;">
+          <div style="display: flex; align-items: baseline; gap: 18px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #7D906A;">06</div>
+            <h2 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 36px; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase;">Questions</h2>
+          </div>
+          <div style="display: flex; flex-direction: column;">
+            <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="4">
+              <div onClick="{{ f.toggle }}" style="border-top: 1px solid rgba(240,227,216,0.12); padding: 18px 2px; cursor: pointer;">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 18px;">
+                  <div style="font-family: 'Jost', sans-serif; font-size: 18px; letter-spacing: 0.02em; color: {{ f.color }}; transition: color 240ms ease;">{{ f.q }}</div>
+                  <div style="font-family: 'JetBrains Mono', monospace; font-size: 14px; color: #7D906A; transform: {{ f.rot }}; transition: transform 320ms cubic-bezier(0.16,1,0.3,1);">+</div>
+                </div>
+                <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+                  <p style="margin: 12px 0 2px; font-size: 14px; line-height: 1.7; color: rgba(240,227,216,0.55); text-wrap: pretty;">{{ f.a }}</p>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="reserver" style="padding: 48px; background: #141311; display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; flex-wrap: wrap;">
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <img src="./logo-light.png" alt="BASE" style="height: 62px; width: auto; display: block;" />
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(240,227,216,0.4);">© 2026 · 2 rue de l'Estanh, Seignosse · infos@coaching-lcperform.fr</div>
+      </div>
+      <a href="#planning" style="font-family: 'Jost', sans-serif; font-size: clamp(26px, 3vw, 46px); letter-spacing: 0.02em; text-transform: uppercase; padding-bottom: 6px; border-bottom: 1px solid rgba(240,227,216,0.3); transition: color 240ms ease, border-color 240ms ease;" style-hover="color: #7D906A; border-color: #7D906A;">Voir le planning →</a>
+    </footer>
+  </main>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const SAGE = '#7D906A';
+const CREAM = '#F0E3D8';
+const eur = (n) => (Math.round(n * 100) / 100).toFixed(2).replace('.', ',').replace(',00', '') + '€';
+
+class Component extends DCLogic {
+  state = { day: 1, slot: 0, course: 0, faq: 0, qty: 1, promo: false };
+
+  renderVals() {
+    const st = this.state;
+    const week = ['LUN 31', 'MAR 01', 'MER 02', 'JEU 03', 'VEN 04', 'SAM 05'];
+
+    const sets = [
+      [
+        { time: '09:00', name: 'Fullbody Activation', meta: 'Lisa · 1 h · Smallgroup', taken: 4, cap: 6, price: 13 },
+        { time: '12:15', name: 'IntenseTraining', meta: 'Lisa · 45 min · Smallgroup', taken: 6, cap: 6, price: 13 },
+        { time: '17:30', name: '100% Fessiers / Cuisses', meta: 'Lisa · 45 min · Smallgroup', taken: 2, cap: 6, price: 13 },
+        { time: '19:00', name: 'Coaching privé', meta: 'Lisa · 1 h · individuel ou duo', taken: 0, cap: 1, price: 30 }
+      ],
+      [
+        { time: '07:30', name: 'IntenseTraining', meta: 'Lisa · 45 min · Smallgroup', taken: 3, cap: 6, price: 13 },
+        { time: '10:00', name: 'Fullbody Activation', meta: 'Lisa · 45 min · Smallgroup', taken: 5, cap: 6, price: 13 },
+        { time: '14:00', name: 'Coaching privé', meta: 'Lisa · 1 h · individuel ou duo', taken: 0, cap: 1, price: 30 },
+        { time: '18:15', name: '100% Fessiers / Cuisses', meta: 'Lisa · 45 min · Smallgroup', taken: 6, cap: 6, price: 13 }
+      ]
+    ];
+    const raw = sets[st.day % 2];
+
+    const courses = [
+      { num: '01', name: 'Fullbody Activation', dur: '45 MIN / 1 H', price: '13€', slot: 'a-cours-1', tags: ['6 personnes max', 'Tous niveaux', 'Posture'],
+        body: "Renforcement musculaire global : haut du corps, bas du corps et sangle abdominale. On tonifie, on travaille la posture, on prévient les blessures." },
+      { num: '02', name: 'IntenseTraining', dur: '45 MIN', price: '13€', slot: 'a-cours-2', tags: ['6 personnes max', 'Cardio + force', 'Intensité'],
+        body: "Quarante-cinq minutes pour repousser vos limites : renforcement musculaire, force et cardio associés dans la même séance." },
+      { num: '03', name: '100% Fessiers / Cuisses', dur: '45 MIN', price: '13€', slot: 'a-cours-3', tags: ['6 personnes max', 'Bas du corps', 'Volume'],
+        body: "Une session entièrement dédiée au bas du corps : renforcer et tonifier la chaîne antérieure, gagner en volume séance après séance." },
+      { num: '04', name: 'Coaching privé', dur: '1 H', price: '30€', slot: 'a-cours-4', tags: ['Individuel ou duo', 'Sur objectif', 'Sur rendez-vous'],
+        body: "Séances 100 % personnalisées : perte de poids, remise en forme, préparation physique, travail postural, prise de masse. Duo sur demande." }
+    ];
+
+    const faqData = [
+      { q: 'Comment marche PERFORM10 ?', a: "Réservez quatre séances ou plus et le code PERFORM10 applique 10 % de remise sur la commande, avant paiement." },
+      { q: 'Faut-il un compte ?', a: "Non : nom, e-mail, téléphone suffisent. Le compte sert à retrouver vos réservations et votre historique." },
+      { q: 'Combien de personnes par cours ?', a: "Quatre à six maximum. Chaque série est corrigée et la charge ajustée personne par personne." },
+      { q: 'Je débute, je commence par quoi ?', a: "Fullbody Activation. Ensuite Lisa vous orientera vers le cours le plus adapté à vos objectifs." }
+    ];
+
+    const slots = raw.map((s, i) => {
+      const full = s.taken >= s.cap;
+      const left = s.cap - s.taken;
+      const sel = st.slot === i && !full;
+      const seats = [];
+      for (let k = 0; k < s.cap; k++) {
+        const busy = k < s.taken;
+        seats.push({ bg: busy ? 'rgba(240,227,216,0.22)' : SAGE, border: busy ? 'rgba(240,227,216,0.25)' : SAGE });
+      }
+      return {
+        time: s.time, name: s.name, meta: s.meta, seats,
+        status: full ? 'COMPLET' : left === s.cap ? 'DISPONIBLE' : left + (left > 1 ? ' PLACES' : ' PLACE'),
+        statusColor: full ? 'rgba(240,227,216,0.4)' : SAGE,
+        border: sel ? SAGE : 'rgba(240,227,216,0.12)',
+        bg: sel ? 'rgba(125,144,106,0.1)' : 'transparent',
+        opacity: full ? '0.4' : '1',
+        cursor: full ? 'not-allowed' : 'pointer',
+        pick: full ? undefined : () => this.setState({ slot: i })
+      };
+    });
+
+    const chosen = raw[st.slot] || raw[0];
+    const promoActive = st.promo && st.qty >= 4;
+    const total = chosen.price * st.qty * (promoActive ? 0.9 : 1);
+
+    return {
+      nav: [
+        { num: '01', label: 'Planning', hint: 'Réserver', href: '#planning' },
+        { num: '02', label: 'Les cours', hint: '4', href: '#cours' },
+        { num: '03', label: 'Tarifs', hint: '13€', href: '#tarifs' },
+        { num: '04', label: 'La coach', hint: 'Lisa', href: '#coach' },
+        { num: '05', label: 'Avis', hint: '', href: '#avis' },
+        { num: '06', label: 'Questions', hint: 'FAQ', href: '#avis' }
+      ],
+      week: week.map((w, i) => {
+        const on = st.day === i;
+        const p = w.split(' ');
+        return {
+          day: p[0], num: p[1],
+          pick: () => this.setState({ day: i, slot: 0 }),
+          bg: on ? 'rgba(125,144,106,0.14)' : 'transparent',
+          border: on ? SAGE : 'rgba(240,227,216,0.1)',
+          fg: on ? CREAM : 'rgba(240,227,216,0.7)'
+        };
+      }),
+      slots,
+      courses: courses.map((c, i) => {
+        const open = st.course === i;
+        return Object.assign({}, c, {
+          open,
+          toggle: () => this.setState({ course: open ? -1 : i }),
+          color: open ? CREAM : 'rgba(240,227,216,0.8)',
+          rot: open ? 'rotate(45deg)' : 'rotate(0deg)'
+        });
+      }),
+      prices: [
+        { name: 'Smallgroup', detail: 'Fullbody · IntenseTraining · Fessiers/Cuisses — 6 personnes max', price: '13€' },
+        { name: '4 séances', detail: 'Code PERFORM10, -10 % sur la commande', price: '46,80€' },
+        { name: 'Coaching privé', detail: '1 h, individuel ou duo sur demande', price: '30€' }
+      ],
+      facts: [
+        { v: 'BPJEPS', k: 'DIPLÔME' }, { v: 'HALTÉRO', k: 'MENTION' }, { v: 'TALENCE', k: 'PÔLE ATHLÉ' }
+      ],
+      quotes: [
+        { text: "Six personnes par cours, ça change tout : chaque mouvement est corrigé.", meta: 'PLACEHOLDER · SMALLGROUP' },
+        { text: "Je cale mes créneaux le dimanche soir et je n'y pense plus.", meta: 'PLACEHOLDER · 4 SÉANCES' },
+        { text: "Le coaching privé m'a remis en mouvement sans me brusquer.", meta: 'PLACEHOLDER · PRIVÉ' }
+      ],
+      faqs: faqData.map((f, i) => {
+        const open = st.faq === i;
+        return {
+          q: f.q, a: f.a, open,
+          toggle: () => this.setState({ faq: open ? -1 : i }),
+          color: open ? CREAM : 'rgba(240,227,216,0.78)',
+          rot: open ? 'rotate(45deg)' : 'rotate(0deg)'
+        };
+      }),
+      qty: st.qty,
+      inc: () => this.setState({ qty: Math.min(10, st.qty + 1) }),
+      dec: () => this.setState({ qty: Math.max(1, st.qty - 1) }),
+      applyPromo: () => this.setState({ promo: !st.promo }),
+      promoLabel: promoActive ? 'PERFORM10 ✓ -10%' : st.promo ? 'DÈS 4 SÉANCES' : 'CODE PERFORM10',
+      promoBorder: promoActive ? SAGE : 'rgba(240,227,216,0.25)',
+      promoColor: promoActive ? SAGE : 'rgba(240,227,216,0.5)',
+      cart: {
+        title: chosen.name,
+        when: week[st.day] + ' · ' + chosen.time,
+        total: eur(total)
+      }
+    };
+  }
+}
+
+</script>
+</body>
+</html>

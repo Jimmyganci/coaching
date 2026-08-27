@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="omelette-print-source" content="v1787758681533095 BASE - Design System.dc.html" />
+<title>BASE — Design System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  doc-page:not(:defined) { visibility: hidden; }
+  * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  * { animation-delay: -99s !important; animation-duration: .001s !important;
+      animation-iteration-count: 1 !important; animation-fill-mode: both !important;
+      animation-play-state: running !important; transition-duration: 0s !important; }
+  html, body, doc-page { background: #050505; }
+  body { margin: 0; color: #F0E3D8; font-family: 'Instrument Sans', system-ui, sans-serif; }
+  .sec { break-inside: auto; margin-bottom: 30px; }
+  .sec-head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 16px; break-after: avoid; }
+  .num { font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: #7D906A; }
+  h2 { margin: 0; font-family: 'Jost', sans-serif; font-weight: 400; font-size: 26px; letter-spacing: 0.04em; text-transform: uppercase; }
+  .lede { margin: 0; flex: 1; font-size: 12.5px; line-height: 1.55; color: rgba(240,227,216,0.6); }
+  .grid { display: grid; gap: 2px; }
+  .g2 { grid-template-columns: 1fr 1fr; }
+  .g3 { grid-template-columns: repeat(3, 1fr); }
+  .g4 { grid-template-columns: repeat(4, 1fr); }
+  .card { break-inside: avoid; outline: 1px solid rgba(240,227,216,0.1); background: rgba(240,227,216,0.03); padding: 18px 20px; }
+  .lbl { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,227,216,0.45); }
+  .acc { color: #7D906A; }
+  .name { font-family: 'Jost', sans-serif; font-size: 15px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .body { font-size: 12.5px; line-height: 1.6; color: rgba(240,227,216,0.55); orphans: 3; widows: 3; }
+  .btn { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 12px 20px; border-radius: 2px; display: inline-block; }
+  .chip { font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; padding: 7px 12px; border: 1px solid rgba(240,227,216,0.2); border-radius: 999px; color: rgba(240,227,216,0.7); }
+  .checker { background-image: repeating-conic-gradient(#7D906A 0% 25%, transparent 0% 50%); }
+</style>
+</head>
+<body>
+<doc-page margin="0.55in">
+
+  <header style="display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; padding-bottom: 22px; border-bottom: 1px solid rgba(240,227,216,0.14); margin-bottom: 34px; break-inside: avoid;">
+    <img src="./logo-light.png" alt="BASE — Coaching · Mouvement · Performance" style="width: 330px; height: auto; display: block;" />
+    <div style="display: flex; flex-direction: column; gap: 5px; text-align: right;" class="lbl">
+      <div>Design system — v1.0</div>
+      <div>Août 2026</div>
+      <div class="acc">Dérivé du logo</div>
+    </div>
+  </header>
+
+  <section class="sec">
+    <div class="sec-head"><div class="num">00</div><h2>Versions du logo</h2></div>
+    <p class="lede" style="margin-bottom: 14px;">Les quatre fichiers fournis, utilisés tels quels. Sur fond noir et sur fond crème, une version détourée en PNG transparent permet de poser le logo sur photo.</p>
+    <div class="grid g2">
+      <div style="break-inside: avoid; outline: 1px solid rgba(240,227,216,0.1);">
+        <img src="./logo-noir.jpg" alt="Logo sur fond noir" style="width: 100%; height: auto; display: block;" />
+        <div class="lbl" style="padding: 10px 14px;">Fond noir · référence</div>
+      </div>
+      <div style="break-inside: avoid; outline: 1px solid rgba(240,227,216,0.1);">
+        <img src="./logo-creme.jpg" alt="Logo sur fond crème" style="width: 100%; height: auto; display: block;" />
+        <div class="lbl" style="padding: 10px 14px;">Fond crème</div>
+      </div>
+      <div style="break-inside: avoid; outline: 1px solid rgba(240,227,216,0.1);">
+        <img src="./logo-taupe.jpg" alt="Logo sur fond taupe" style="width: 100%; height: auto; display: block;" />
+        <div class="lbl" style="padding: 10px 14px;">Fond taupe</div>
+      </div>
+      <div style="break-inside: avoid; outline: 1px solid rgba(240,227,216,0.1);">
+        <img src="./logo-sauge.jpg" alt="Logo sur fond sauge" style="width: 100%; height: auto; display: block;" />
+        <div class="lbl" style="padding: 10px 14px;">Fond sauge</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><div class="num">01</div><h2>Couleur</h2></div>
+    <p class="lede" style="margin-bottom: 14px;">Quatre valeurs, tirées des quatre versions du logo : noir, crème, taupe, sauge. Un seul accent actif — le sauge. Tout le reste est de l'opacité.</p>
+    <div class="grid g4">
+      <div class="card">
+        <div style="height: 62px; background: #050505; box-shadow: inset 0 0 0 1px rgba(240,227,216,0.18); border-radius: 2px; margin-bottom: 14px;"></div>
+        <div class="name">Noir Base</div>
+        <div class="acc" style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; margin: 4px 0;">#050505</div>
+        <div class="body" style="font-size: 11.5px;">Fond dominant, 80 % de la surface</div>
+      </div>
+      <div class="card">
+        <div style="height: 62px; background: #F0E3D8; border-radius: 2px; margin-bottom: 14px;"></div>
+        <div class="name">Crème</div>
+        <div class="acc" style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; margin: 4px 0;">#F0E3D8</div>
+        <div class="body" style="font-size: 11.5px;">Texte, wordmark, section inversée</div>
+      </div>
+      <div class="card">
+        <div style="height: 62px; background: #7D906A; border-radius: 2px; margin-bottom: 14px;"></div>
+        <div class="name">Sauge</div>
+        <div class="acc" style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; margin: 4px 0;">#7D906A</div>
+        <div class="body" style="font-size: 11.5px;">Accent unique : CTA, chiffres, états actifs</div>
+      </div>
+      <div class="card">
+        <div style="height: 62px; background: #A79483; border-radius: 2px; margin-bottom: 14px;"></div>
+        <div class="name">Taupe</div>
+        <div class="acc" style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; margin: 4px 0;">#A79483</div>
+        <div class="body" style="font-size: 11.5px;">Troisième fond : bandeaux, blocs d'appui</div>
+      </div>
+      <div class="card">
+        <div style="height: 62px; background: #48543E; border-radius: 2px; margin-bottom: 14px;"></div>
+        <div class="name">Sauge sombre</div>
+        <div class="acc" style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; margin: 4px 0;">#48543E</div>
+        <div class="body" style="font-size: 11.5px;">Survols pleins, bordures actives</div>
+      </div>
+      <div class="card">
+        <div style="height: 62px; background: #0E0E0D; box-shadow: inset 0 0 0 1px rgba(240,227,216,0.14); border-radius: 2px; margin-bottom: 14px;"></div>
+        <div class="name">Surface</div>
+        <div class="acc" style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; margin: 4px 0;">#0E0E0D</div>
+        <div class="body" style="font-size: 11.5px;">Cartes, panneaux, entêtes collants</div>
+      </div>
+      <div class="card">
+        <div style="height: 62px; background: #1F1F1D; border-radius: 2px; margin-bottom: 14px;"></div>
+        <div class="name">Ligne</div>
+        <div class="acc" style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; margin: 4px 0;">#1F1F1D</div>
+        <div class="body" style="font-size: 11.5px;">Bordures — crème à 12 % d'opacité</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="break-before: page;">
+    <div class="sec-head"><div class="num">02</div><h2>Typographie</h2></div>
+    <p class="lede" style="margin-bottom: 14px;">Le logo est une géométrique large. Jost reprend ce squelette ; Instrument Sans porte la lecture ; le mono chiffre et étiquette.</p>
+    <div class="grid g2" style="margin-bottom: 2px;">
+      <div class="card" style="padding: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 18px;">
+          <div style="font-family: 'Jost', sans-serif; font-size: 19px; letter-spacing: 0.14em; text-transform: uppercase;">Jost</div>
+          <div class="lbl acc">DISPLAY / 300-500</div>
+        </div>
+        <div style="font-family: 'Jost', sans-serif; font-weight: 300; font-size: 46px; line-height: 0.95; letter-spacing: 0.02em; text-transform: uppercase; margin-bottom: 18px;">Reprends<br />ta base</div>
+        <div style="font-family: 'Jost', sans-serif; font-size: 13px; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(240,227,216,0.6); margin-bottom: 14px;">ABCDEFGHIJKLM · 0123456789</div>
+        <div class="body">Titres et wordmark. Toujours en capitales, interlettrage 0.02→0.26em selon la taille. Jamais en dessous de 14px.</div>
+      </div>
+      <div class="card" style="padding: 24px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 18px;">
+          <div style="font-size: 19px;">Instrument Sans</div>
+          <div class="lbl acc">TEXTE / 400-600</div>
+        </div>
+        <p style="margin: 0 0 16px; font-size: 16px; line-height: 1.55; color: rgba(240,227,216,0.88);">Trois séances par semaine, un coach qui connaît votre nom, et un plan qui tient compte de votre agenda plutôt que de l'inverse.</p>
+        <div class="body">Paragraphes, labels d'interface, boutons. Corps de texte à 17px, secondaire à 14px, jamais plus de 68 caractères par ligne.</div>
+      </div>
+    </div>
+    <div class="grid g3">
+      <div class="card">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 24px;">07:45 — 08:30</div>
+        <div class="lbl acc" style="margin-top: 10px;">JETBRAINS MONO / DONNÉES</div>
+      </div>
+      <div class="card">
+        <div class="lbl">ALTERNATIVE</div>
+        <div class="name" style="margin: 8px 0;">Archivo + Söhne</div>
+        <div class="body">Plus américain, plus dense. Bon si la marque va vers la performance chiffrée.</div>
+      </div>
+      <div class="card">
+        <div class="lbl">ALTERNATIVE</div>
+        <div class="name" style="margin: 8px 0;">Neue Haas Grotesk + Jost</div>
+        <div class="body">Neutre suisse pour le texte, géométrique réservé au wordmark uniquement.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><div class="num">03</div><h2>Motif &amp; grille</h2></div>
+    <p class="lede" style="margin-bottom: 14px;">Le damier du logo devient la signature graphique : séparateurs, jauges de remplissage, textures d'angle.</p>
+    <div class="grid g4">
+      <div class="card" style="height: 140px; display: flex; align-items: center; justify-content: center;">
+        <div class="checker" style="width: 96px; height: 96px; background-size: 14px 14px;"></div>
+      </div>
+      <div class="card" style="height: 140px; display: flex; align-items: center; justify-content: center;">
+        <div style="width: 100%; height: 9px; background-image: repeating-conic-gradient(rgba(240,227,216,0.55) 0% 25%, transparent 0% 50%); background-size: 5px 5px;"></div>
+      </div>
+      <div class="card" style="height: 140px; position: relative; padding: 0; overflow: hidden;">
+        <div style="position: absolute; inset: 0; background-image: linear-gradient(rgba(240,227,216,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(240,227,216,0.1) 1px, transparent 1px); background-size: 26px 26px;"></div>
+        <div class="lbl" style="position: absolute; left: 16px; bottom: 14px;">GRILLE 12 COL · GOUTTIÈRE 32</div>
+      </div>
+      <div class="card" style="height: 140px; background: #F0E3D8; color: #050505; display: flex; flex-direction: column; justify-content: space-between;">
+        <div class="name">Inversion</div>
+        <div style="font-size: 11.5px; line-height: 1.5; color: rgba(5,5,5,0.65);">Une seule section crème par page, pour les tarifs ou la preuve.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" style="break-before: page;">
+    <div class="sec-head"><div class="num">04</div><h2>Composants</h2></div>
+    <p class="lede" style="margin-bottom: 14px;">Angles vifs, 2px de rayon maximum, bordures à 12 % d'opacité. Toutes les transitions en 240 ms.</p>
+    <div class="grid g2">
+      <div class="card" style="padding: 24px;">
+        <div class="lbl" style="margin-bottom: 16px;">BOUTONS</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 16px;">
+          <span class="btn" style="background: #7D906A; color: #050505;">Réserver une séance</span>
+          <span class="btn" style="border: 1px solid rgba(240,227,216,0.3); color: #F0E3D8;">Le studio</span>
+        </div>
+        <div style="display: inline-flex; align-items: center; gap: 8px; font-size: 11.5px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(240,227,216,0.75); border-bottom: 1px solid rgba(240,227,216,0.25); padding-bottom: 3px;">Lien texte<span class="acc">→</span></div>
+      </div>
+      <div class="card" style="padding: 24px;">
+        <div class="lbl" style="margin-bottom: 16px;">ÉTIQUETTES</div>
+        <div style="display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 16px;">
+          <span class="chip">Fullbody</span>
+          <span class="chip">IntenseTraining</span>
+          <span class="chip">Fessiers / Cuisses</span>
+          <span class="chip">Coaching privé</span>
+        </div>
+        <div style="display: flex; align-items: center; gap: 9px;">
+          <div style="width: 7px; height: 7px; border-radius: 50%; background: #7D906A;"></div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; color: rgba(240,227,216,0.65);">3 PLACES RESTANTES</div>
+        </div>
+      </div>
+      <div class="card" style="padding: 0;">
+        <div class="lbl" style="padding: 20px 22px 0;">CRÉNEAU</div>
+        <div style="padding: 16px 22px 22px; display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 15px; border: 1px solid rgba(240,227,216,0.14); border-radius: 2px;">
+            <div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 15px;">09:00</div>
+              <div class="name" style="margin: 5px 0 3px; font-size: 14px;">Fullbody Activation</div>
+              <div style="font-size: 11px; color: rgba(240,227,216,0.45);">Lisa · 1 h · 6 places</div>
+            </div>
+            <div class="acc" style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em;">2 PLACES</div>
+          </div>
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 15px; border: 1px solid rgba(240,227,216,0.08); border-radius: 2px; opacity: 0.45;">
+            <div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 15px;">12:15</div>
+              <div class="name" style="margin-top: 5px; font-size: 14px;">IntenseTraining</div>
+            </div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em;">COMPLET</div>
+          </div>
+        </div>
+      </div>
+      <div class="card" style="padding: 24px; background: #F0E3D8; color: #050505;">
+        <div class="lbl" style="color: rgba(5,5,5,0.5); margin-bottom: 16px;">CARTE TARIF (INVERSÉE)</div>
+        <div style="display: flex; align-items: flex-end; gap: 8px; margin-bottom: 12px;">
+          <div style="font-family: 'Jost', sans-serif; font-weight: 300; font-size: 46px; line-height: 0.9;">13€</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10.5px; letter-spacing: 0.14em; padding-bottom: 7px; color: rgba(5,5,5,0.55);">/ SÉANCE</div>
+        </div>
+        <div class="name" style="margin-bottom: 12px;">Smallgroup</div>
+        <div style="height: 7px; background-image: repeating-conic-gradient(rgba(5,5,5,0.55) 0% 25%, transparent 0% 50%); background-size: 4px 4px; margin-bottom: 12px;"></div>
+        <div style="font-size: 12px; line-height: 1.65; color: rgba(5,5,5,0.68);">6 personnes max · 45 min à 1 h · -10 % dès 4 séances</div>
+      </div>
+      <div class="card" style="padding: 24px;">
+        <div class="lbl" style="margin-bottom: 14px;">CHAMPS</div>
+        <div class="lbl" style="margin-bottom: 6px;">EMAIL</div>
+        <div style="font-size: 14px; padding: 10px 0; border-bottom: 1px solid rgba(240,227,216,0.22); margin-bottom: 14px;">lisa@base-coaching.fr</div>
+        <div style="display: flex; gap: 6px;">
+          <div style="flex: 1; padding: 10px 0; text-align: center; border: 1px solid rgba(240,227,216,0.14); border-radius: 2px;"><div class="lbl">LUN</div><div style="font-family: 'Jost', sans-serif; font-size: 16px;">31</div></div>
+          <div style="flex: 1; padding: 10px 0; text-align: center; border: 1px solid #7D906A; background: rgba(125,144,106,0.12); border-radius: 2px;"><div class="lbl">MAR</div><div style="font-family: 'Jost', sans-serif; font-size: 16px;">01</div></div>
+          <div style="flex: 1; padding: 10px 0; text-align: center; border: 1px solid rgba(240,227,216,0.14); border-radius: 2px;"><div class="lbl">MER</div><div style="font-family: 'Jost', sans-serif; font-size: 16px;">02</div></div>
+          <div style="flex: 1; padding: 10px 0; text-align: center; border: 1px solid rgba(240,227,216,0.14); border-radius: 2px;"><div class="lbl">JEU</div><div style="font-family: 'Jost', sans-serif; font-size: 16px;">03</div></div>
+          <div style="flex: 1; padding: 10px 0; text-align: center; border: 1px solid rgba(240,227,216,0.14); border-radius: 2px;"><div class="lbl">VEN</div><div style="font-family: 'Jost', sans-serif; font-size: 16px;">04</div></div>
+        </div>
+      </div>
+      <div class="card" style="padding: 24px;">
+        <div class="lbl" style="margin-bottom: 14px;">MÉDIA — EMPLACEMENT PHOTO</div>
+        <div style="height: 128px; border: 1px solid rgba(240,227,216,0.14); background-image: repeating-linear-gradient(135deg, rgba(240,227,216,0.07) 0 2px, transparent 2px 9px); display: flex; align-items: flex-end; padding: 14px;">
+          <div class="lbl">PHOTO SALLE · 4:5</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><div class="num">05</div><h2>Mouvement</h2></div>
+    <p class="lede" style="margin-bottom: 14px;">Discret et physique : rien ne rebondit, tout décélère. Courbe unique cubic-bezier(0.16, 1, 0.3, 1).</p>
+    <div class="grid g4" style="margin-bottom: 2px;">
+      <div class="card">
+        <div class="lbl acc">640MS</div>
+        <div class="name" style="margin: 8px 0;">Révélation</div>
+        <div class="body">Le texte monte de 24px sous un masque, ligne par ligne, décalage 60 ms.</div>
+      </div>
+      <div class="card">
+        <div class="lbl acc">240MS</div>
+        <div class="name" style="margin: 8px 0;">Survol</div>
+        <div class="body">Bordure vers sauge, translation -2px. Jamais de scale sur du texte.</div>
+      </div>
+      <div class="card">
+        <div class="lbl acc">30S</div>
+        <div class="name" style="margin: 8px 0;">Défilement</div>
+        <div class="body">Bandeau baseline en continu, vitesse constante, pas d'arrêt au survol.</div>
+      </div>
+      <div class="card">
+        <div class="lbl acc">1200MS</div>
+        <div class="name" style="margin: 8px 0;">Compteur</div>
+        <div class="body">Les chiffres s'incrémentent à l'entrée dans le viewport, une seule fois.</div>
+      </div>
+    </div>
+    <div style="break-inside: avoid; background: #A79483; padding: 16px 20px; overflow: hidden; white-space: nowrap; font-family: 'Jost', sans-serif; font-size: 20px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(20,19,17,0.66);">
+      Coaching <span style="color: #F0E3D8;">·</span> Mouvement <span style="color: #F0E3D8;">·</span> Performance <span style="color: #F0E3D8;">·</span> Coaching <span style="color: #F0E3D8;">·</span> Mouvement
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-head"><div class="num">06</div><h2>Voix</h2></div>
+    <div class="grid g2">
+      <div class="card" style="padding: 24px; background: rgba(125,144,106,0.1); outline: 1px solid rgba(125,144,106,0.3);">
+        <div class="lbl acc" style="margin-bottom: 12px;">ON DIT</div>
+        <div style="font-family: 'Jost', sans-serif; font-size: 19px; line-height: 1.35; margin-bottom: 12px;">« Trois séances. On repart de la base. »</div>
+        <div class="body">Phrases courtes, verbes à l'impératif, chiffres concrets. Le sport est exigeant, la marque aussi.</div>
+      </div>
+      <div class="card" style="padding: 24px;">
+        <div class="lbl" style="margin-bottom: 12px;">ON NE DIT PAS</div>
+        <div style="font-family: 'Jost', sans-serif; font-size: 19px; line-height: 1.35; color: rgba(240,227,216,0.35); text-decoration: line-through; margin-bottom: 12px;">« Libérez votre potentiel dès aujourd'hui ! »</div>
+        <div class="body">Pas de superlatif, pas d'exclamation, pas de promesse de transformation en 30 jours.</div>
+      </div>
+    </div>
+  </section>
+
+</doc-page>
+<script src="./doc-page.js"></script>
+</body>
+</html>

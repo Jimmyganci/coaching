@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400&family=Instrument+Sans:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { margin: 0; background: #050505; color: #F0E3D8; -webkit-font-smoothing: antialiased; }
+  a { color: #F0E3D8; text-decoration: none; }
+  a:hover { color: #7D906A; }
+  input, select, textarea { font-family: 'Instrument Sans', system-ui, sans-serif; }
+  ::selection { background: #7D906A; color: #050505; }
+  @keyframes r-blink { 0%,100% { opacity: 1; } 50% { opacity: 0.25; } }
+  @keyframes r-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+</style>
+</helmet>
+
+<div style="min-height: 100vh; background: #050505; color: #F0E3D8; font-family: 'Instrument Sans', system-ui, sans-serif;">
+
+  <header style="position: sticky; top: 0; z-index: 40; display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding: 18px 40px; background: rgba(5,5,5,0.92); backdrop-filter: blur(14px); border-bottom: 1px solid rgba(240,227,216,0.12);">
+    <a href="./BASE - Accueil C - Chapitres.dc.html" style="display: flex; align-items: center; gap: 16px;">
+      <img src="./logo-light.png" alt="BASE" style="height: 26px; width: auto; align-self: center; flex: 0 0 auto; object-fit: contain; display: block;" />
+      <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(240,227,216,0.45);">Retour à l'accueil</span>
+    </a>
+    <div style="display: flex; align-items: center; gap: 10px;">
+      <sc-for list="{{ steps }}" as="s" hint-placeholder-count="4">
+        <div onClick="{{ s.go }}" style="display: flex; align-items: center; gap: 9px; padding: 7px 12px; cursor: {{ s.cursor }}; border: 1px solid {{ s.border }}; background: {{ s.bg }}; transition: all 260ms cubic-bezier(0.16,1,0.3,1);">
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: {{ s.numColor }};">{{ s.num }}</span>
+          <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: {{ s.color }};">{{ s.label }}</span>
+        </div>
+      </sc-for>
+    </div>
+  </header>
+
+  <div style="display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, 360px); gap: 2px; align-items: start; padding: 40px; max-width: 1560px; margin: 0 auto;">
+
+    <main style="min-width: 0; min-height: 62vh; border: 1px solid rgba(240,227,216,0.12); padding: 32px;">
+
+      <sc-if value="{{ isStep1 }}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-direction: column; gap: 30px; animation: r-in 420ms cubic-bezier(0.16,1,0.3,1);">
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #7D906A;">Étape 01 — Créneau</div>
+            <h1 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 200; font-size: clamp(34px, 4.4vw, 66px); line-height: 0.95; text-transform: uppercase;">Choisissez<br />votre séance</h1>
+            <p style="margin: 0; max-width: 520px; font-size: 15px; line-height: 1.7; color: rgba(240,227,216,0.6); text-wrap: pretty;">Six places par cours collectif, une seule en coaching privé. Les créneaux complets restent affichés pour situer le rythme de la semaine.</p>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; color: rgba(240,227,216,0.45);">SEMAINE DU 31 AOÛT</div>
+              <div style="display: flex; gap: 2px;">
+                <div onClick="{{ prevWeek }}" style="width: 30px; height: 28px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(240,227,216,0.18); cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 12px;" style-hover="border-color: #7D906A; color: #7D906A;">←</div>
+                <div onClick="{{ nextWeek }}" style="width: 30px; height: 28px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(240,227,216,0.18); cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 12px;" style-hover="border-color: #7D906A; color: #7D906A;">→</div>
+              </div>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px;">
+              <sc-for list="{{ week }}" as="d" hint-placeholder-count="6">
+                <div onClick="{{ d.pick }}" style="padding: 15px 8px; text-align: center; cursor: pointer; border: 1px solid {{ d.border }}; background: {{ d.bg }}; transition: all 240ms cubic-bezier(0.16,1,0.3,1);">
+                  <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: rgba(240,227,216,0.5);">{{ d.day }}</div>
+                  <div style="font-family: 'Jost', sans-serif; font-size: 24px; color: {{ d.fg }};">{{ d.num }}</div>
+                  <div style="font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.1em; color: {{ d.hintColor }};">{{ d.hint }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-direction: column; gap: 2px;">
+            <sc-for list="{{ slots }}" as="s" hint-placeholder-count="4">
+              <div onClick="{{ s.pick }}" style="display: grid; grid-template-columns: 66px minmax(0, 1fr) auto auto; align-items: center; gap: 14px; padding: 20px 16px; cursor: {{ s.cursor }}; border: 1px solid {{ s.border }}; background: {{ s.bg }}; opacity: {{ s.opacity }}; transition: all 240ms cubic-bezier(0.16,1,0.3,1);">
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 17px;">{{ s.time }}</div>
+                <div style="display: flex; flex-direction: column; gap: 4px;">
+                  <div style="font-family: 'Jost', sans-serif; font-size: 19px; letter-spacing: 0.05em; text-transform: uppercase; color: {{ s.nameColor }};">{{ s.name }}</div>
+                  <div style="font-size: 12px; color: rgba(240,227,216,0.45);">{{ s.meta }}</div>
+                </div>
+                <div style="display: flex; align-items: center; gap: 3px;">
+                  <sc-for list="{{ s.seats }}" as="seat" hint-placeholder-count="6">
+                    <div style="width: 11px; height: 20px; background: {{ seat.bg }}; border: 1px solid {{ seat.border }};"></div>
+                  </sc-for>
+                </div>
+                <div style="text-align: right; min-width: 84px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: {{ s.statusColor }};">{{ s.status }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding-top: 8px;">
+            <div style="font-size: 13px; color: rgba(240,227,216,0.5);">{{ step1Hint }}</div>
+            <div onClick="{{ toStep2 }}" style="padding: 15px 30px; cursor: pointer; background: {{ nextBg }}; color: {{ nextFg }}; border: 1px solid {{ nextBg }}; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; transition: all 240ms ease;">Continuer</div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isStep2 }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 30px; animation: r-in 420ms cubic-bezier(0.16,1,0.3,1);">
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #7D906A;">Étape 02 — Vos informations</div>
+            <h1 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 200; font-size: clamp(34px, 4.4vw, 66px); line-height: 0.95; text-transform: uppercase;">Qui vient<br />s'entraîner ?</h1>
+          </div>
+
+          <div style="display: flex; gap: 2px; flex-wrap: wrap;">
+            <sc-for list="{{ modes }}" as="m" hint-placeholder-count="3">
+              <div onClick="{{ m.pick }}" style="flex: 1; padding: 18px 20px; cursor: pointer; border: 1px solid {{ m.border }}; background: {{ m.bg }}; display: flex; flex-direction: column; gap: 7px; transition: all 260ms cubic-bezier(0.16,1,0.3,1);">
+                <div style="font-family: 'Jost', sans-serif; font-size: 17px; letter-spacing: 0.04em; text-transform: uppercase; color: {{ m.fg }};">{{ m.title }}</div>
+                <div style="font-size: 12.5px; line-height: 1.6; color: rgba(240,227,216,0.5);">{{ m.sub }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2px;">
+            <sc-for list="{{ fields }}" as="f" hint-placeholder-count="4">
+              <label style="grid-column: {{ f.span }}; display: flex; flex-direction: column; gap: 9px; padding: 18px 20px; border: 1px solid {{ f.border }}; background: rgba(240,227,216,0.02);">
+                <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: {{ f.labelColor }};">{{ f.label }}</span>
+                <input type="{{ f.type }}" value="{{ f.value }}" onChange="{{ f.onChange }}" placeholder="{{ f.placeholder }}" style="border: 0; outline: 0; background: transparent; color: #F0E3D8; font-size: 16px; padding: 0;" />
+              </label>
+            </sc-for>
+          </div>
+
+          <label onClick="{{ toggleFirst }}" style="display: flex; align-items: flex-start; gap: 14px; padding: 18px 20px; border: 1px solid rgba(240,227,216,0.12); cursor: pointer;">
+            <div style="width: 18px; height: 18px; flex: 0 0 auto; margin-top: 2px; border: 1px solid {{ firstBorder }}; background: {{ firstBg }}; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #050505;">{{ firstMark }}</div>
+            <div style="display: flex; flex-direction: column; gap: 5px;">
+              <div style="font-size: 14.5px;">C'est ma première séance chez BASE</div>
+              <div style="font-size: 12.5px; line-height: 1.6; color: rgba(240,227,216,0.5);">Lisa vous appelle avant le cours pour cadrer vos objectifs et adapter la charge.</div>
+            </div>
+          </label>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+            <div onClick="{{ toStep1 }}" style="padding: 15px 26px; cursor: pointer; border: 1px solid rgba(240,227,216,0.2); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; transition: all 240ms ease;" style-hover="border-color: #7D906A; color: #7D906A;">Retour</div>
+            <div onClick="{{ toStep3 }}" style="padding: 15px 30px; cursor: pointer; background: {{ payBg }}; color: {{ payFg }}; border: 1px solid {{ payBg }}; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; transition: all 240ms ease;">Passer au paiement</div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isStep3 }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 30px; animation: r-in 420ms cubic-bezier(0.16,1,0.3,1);">
+          <div style="display: flex; flex-direction: column; gap: 14px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #7D906A;">Étape 03 — Paiement</div>
+            <h1 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 200; font-size: clamp(34px, 4.4vw, 66px); line-height: 0.95; text-transform: uppercase;">Régler<br />la séance</h1>
+          </div>
+
+          <div style="display: flex; gap: 2px;">
+            <sc-for list="{{ payModes }}" as="p" hint-placeholder-count="2">
+              <div onClick="{{ p.pick }}" style="flex: 1; padding: 18px 20px; cursor: pointer; border: 1px solid {{ p.border }}; background: {{ p.bg }}; display: flex; align-items: center; justify-content: space-between; gap: 14px; transition: all 260ms cubic-bezier(0.16,1,0.3,1);">
+                <div style="font-family: 'Jost', sans-serif; font-size: 17px; letter-spacing: 0.04em; text-transform: uppercase; color: {{ p.fg }};">{{ p.title }}</div>
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: rgba(240,227,216,0.45);">{{ p.tag }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <sc-if value="{{ showCard }}" hint-placeholder-val="{{ true }}">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 2px;">
+              <sc-for list="{{ cardFields }}" as="f" hint-placeholder-count="4">
+                <label style="grid-column: {{ f.span }}; display: flex; flex-direction: column; gap: 9px; padding: 18px 20px; border: 1px solid rgba(240,227,216,0.12); background: rgba(240,227,216,0.02);">
+                  <span style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(240,227,216,0.45);">{{ f.label }}</span>
+                  <input value="{{ f.value }}" onChange="{{ f.onChange }}" placeholder="{{ f.placeholder }}" style="border: 0; outline: 0; background: transparent; color: #F0E3D8; font-size: 16px; font-family: 'JetBrains Mono', monospace; padding: 0;" />
+                </label>
+              </sc-for>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ showTransfer }}" hint-placeholder-val="{{ false }}">
+            <div style="padding: 22px 24px; border: 1px solid rgba(125,144,106,0.4); background: rgba(125,144,106,0.07); display: flex; flex-direction: column; gap: 10px;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: #7D906A;">Sur place, avant le cours</div>
+              <p style="margin: 0; font-size: 14.5px; line-height: 1.7; color: rgba(240,227,216,0.7); text-wrap: pretty;">Votre place est bloquée pendant 24 h. Réglez à l'accueil du studio, en carte ou en espèces. Passé ce délai sans nouvelle, le créneau est remis en ligne.</p>
+            </div>
+          </sc-if>
+
+          <label onClick="{{ toggleCgv }}" style="display: flex; align-items: flex-start; gap: 14px; padding: 18px 20px; border: 1px solid rgba(240,227,216,0.12); cursor: pointer;">
+            <div style="width: 18px; height: 18px; flex: 0 0 auto; margin-top: 2px; border: 1px solid {{ cgvBorder }}; background: {{ cgvBg }}; display: flex; align-items: center; justify-content: center; font-family: 'JetBrains Mono', monospace; font-size: 11px; color: #050505;">{{ cgvMark }}</div>
+            <div style="font-size: 13.5px; line-height: 1.6; color: rgba(240,227,216,0.72);">J'accepte les conditions de vente et la politique d'annulation : gratuite jusqu'à 12 h avant le cours, séance due au-delà.</div>
+          </label>
+
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;">
+            <div onClick="{{ toStep2 }}" style="padding: 15px 26px; cursor: pointer; border: 1px solid rgba(240,227,216,0.2); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; transition: all 240ms ease;" style-hover="border-color: #7D906A; color: #7D906A;">Retour</div>
+            <div onClick="{{ confirm }}" style="padding: 15px 30px; cursor: pointer; background: {{ confirmBg }}; color: {{ confirmFg }}; border: 1px solid {{ confirmBg }}; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; transition: all 240ms ease;">{{ confirmLabel }}</div>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ isStep4 }}" hint-placeholder-val="{{ false }}">
+        <div style="display: flex; flex-direction: column; gap: 32px; animation: r-in 460ms cubic-bezier(0.16,1,0.3,1);">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <div style="width: 7px; height: 7px; border-radius: 50%; background: #7D906A; animation: r-blink 2.2s ease-in-out infinite;"></div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.24em; text-transform: uppercase; color: #7D906A;">Réservation confirmée</div>
+          </div>
+          <h1 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 200; font-size: clamp(34px, 5vw, 78px); line-height: 0.92; text-transform: uppercase;">À {{ ticket.time }},<br />{{ ticket.dayLong }}</h1>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 2px;">
+            <sc-for list="{{ ticketRows }}" as="t" hint-placeholder-count="4">
+              <div style="padding: 22px 20px; border: 1px solid rgba(240,227,216,0.14); display: flex; flex-direction: column; gap: 9px;">
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 8.5px; letter-spacing: 0.16em; color: rgba(240,227,216,0.45);">{{ t.k }}</div>
+                <div style="font-family: 'Jost', sans-serif; font-size: 20px; letter-spacing: 0.02em;">{{ t.v }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="padding: 24px; border: 1px solid rgba(240,227,216,0.14); background: rgba(240,227,216,0.02); display: flex; flex-direction: column; gap: 12px;">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,227,216,0.45);">Ce qui se passe maintenant</div>
+            <sc-for list="{{ nextSteps }}" as="n" hint-placeholder-count="3">
+              <div style="display: flex; gap: 14px; align-items: baseline;">
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; color: #7D906A;">{{ n.num }}</div>
+                <div style="font-size: 14.5px; line-height: 1.65; color: rgba(240,227,216,0.72); text-wrap: pretty;">{{ n.text }}</div>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="display: flex; gap: 2px; flex-wrap: wrap;">
+            <div onClick="{{ restart }}" style="padding: 15px 28px; cursor: pointer; background: #7D906A; color: #050505; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; transition: background 240ms ease;" style-hover="background: #F0E3D8;">Réserver une autre séance</div>
+            <a href="./BASE - Accueil C - Chapitres.dc.html" style="padding: 15px 28px; border: 1px solid rgba(240,227,216,0.2); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;">Retour au site</a>
+          </div>
+        </div>
+      </sc-if>
+
+    </main>
+
+    <aside style="position: sticky; top: 96px; border: 1px solid rgba(240,227,216,0.12); background: rgba(240,227,216,0.03); padding: 28px; display: flex; flex-direction: column; gap: 18px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: rgba(240,227,216,0.45);">VOTRE RÉSERVATION</div>
+      <div style="font-family: 'Jost', sans-serif; font-weight: 300; font-size: 28px; line-height: 1.05; letter-spacing: 0.02em; text-transform: uppercase;">{{ cart.title }}</div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #7D906A;">{{ cart.when }}</div>
+      <div style="height: 7px; background-image: repeating-conic-gradient(rgba(240,227,216,0.3) 0% 25%, transparent 0% 50%); background-size: 4px 4px;"></div>
+
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: rgba(240,227,216,0.5);">SÉANCES</div>
+        <div style="display: flex; align-items: center; gap: 2px;">
+          <div onClick="{{ dec }}" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(240,227,216,0.2); cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: all 200ms ease;" style-hover="border-color: #7D906A; color: #7D906A;">−</div>
+          <div style="width: 42px; height: 32px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(240,227,216,0.2); font-family: 'JetBrains Mono', monospace;">{{ qty }}</div>
+          <div onClick="{{ inc }}" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(240,227,216,0.2); cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: all 200ms ease;" style-hover="border-color: #7D906A; color: #7D906A;">+</div>
+        </div>
+      </div>
+
+      <div onClick="{{ applyPromo }}" style="text-align: center; padding: 12px; border: 1px dashed {{ promoBorder }}; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; color: {{ promoColor }}; transition: all 240ms ease;">{{ promoLabel }}</div>
+
+      <div style="display: flex; flex-direction: column; gap: 9px; padding-top: 14px; border-top: 1px solid rgba(240,227,216,0.14);">
+        <sc-for list="{{ lines }}" as="l" hint-placeholder-count="2">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px;">
+            <div style="font-size: 13px; color: {{ l.color }};">{{ l.k }}</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: {{ l.color }};">{{ l.v }}</div>
+          </div>
+        </sc-for>
+      </div>
+
+      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 12px; padding-top: 12px; border-top: 1px solid rgba(240,227,216,0.14);">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: rgba(240,227,216,0.5);">TOTAL</div>
+        <div style="font-family: 'Jost', sans-serif; font-weight: 300; font-size: 38px;">{{ cart.total }}</div>
+      </div>
+
+      <div style="font-size: 12px; line-height: 1.65; color: rgba(240,227,216,0.42); text-wrap: pretty;">Annulation gratuite jusqu'à 12 h avant la séance. Paiement sécurisé, aucun abonnement, aucun engagement.</div>
+    </aside>
+  </div>
+
+  <footer style="padding: 40px; border-top: 1px solid rgba(240,227,216,0.12); display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(240,227,216,0.4);">
+    <div>2 rue de l'Estanh · 40510 Seignosse · 06 18 01 90 26</div>
+    <div style="display: flex; gap: 20px;">
+      <a href="#" style="color: rgba(240,227,216,0.4);">CGV</a>
+      <a href="#" style="color: rgba(240,227,216,0.4);">Mentions légales</a>
+    </div>
+  </footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1440,&quot;height&quot;:980}}">
+const SAGE = '#7D906A';
+const CREAM = '#F0E3D8';
+const DIM = 'rgba(240,227,216,0.5)';
+const eur = (n) => (Math.round(n * 100) / 100).toFixed(2).replace('.', ',').replace(',00', '') + '€';
+
+const WEEKS = [
+  [
+    { day: 'LUN', num: '31', long: 'lundi 31 août' }, { day: 'MAR', num: '01', long: 'mardi 1er sept.' },
+    { day: 'MER', num: '02', long: 'mercredi 2 sept.' }, { day: 'JEU', num: '03', long: 'jeudi 3 sept.' },
+    { day: 'VEN', num: '04', long: 'vendredi 4 sept.' }, { day: 'SAM', num: '05', long: 'samedi 5 sept.' }
+  ],
+  [
+    { day: 'LUN', num: '07', long: 'lundi 7 sept.' }, { day: 'MAR', num: '08', long: 'mardi 8 sept.' },
+    { day: 'MER', num: '09', long: 'mercredi 9 sept.' }, { day: 'JEU', num: '10', long: 'jeudi 10 sept.' },
+    { day: 'VEN', num: '11', long: 'vendredi 11 sept.' }, { day: 'SAM', num: '12', long: 'samedi 12 sept.' }
+  ]
+];
+
+const DAYS = [
+  [
+    { time: '09:00', name: 'Fullbody Activation', meta: 'Lisa · 1 h', taken: 4, cap: 6, price: 13 },
+    { time: '12:15', name: 'IntenseTraining', meta: 'Lisa · 45 min', taken: 6, cap: 6, price: 13 },
+    { time: '17:30', name: '100% Fessiers / Cuisses', meta: 'Lisa · 45 min', taken: 2, cap: 6, price: 13 },
+    { time: '19:00', name: 'Coaching privé', meta: 'Lisa · 1 h · individuel ou duo', taken: 0, cap: 1, price: 30 }
+  ],
+  [
+    { time: '07:30', name: 'IntenseTraining', meta: 'Lisa · 45 min', taken: 3, cap: 6, price: 13 },
+    { time: '10:00', name: 'Fullbody Activation', meta: 'Lisa · 45 min', taken: 5, cap: 6, price: 13 },
+    { time: '14:00', name: 'Coaching privé', meta: 'Lisa · 1 h · duo possible', taken: 0, cap: 1, price: 30 },
+    { time: '18:15', name: '100% Fessiers / Cuisses', meta: 'Lisa · 45 min', taken: 6, cap: 6, price: 13 }
+  ],
+  [
+    { time: '09:00', name: '100% Fessiers / Cuisses', meta: 'Lisa · 45 min', taken: 1, cap: 6, price: 13 },
+    { time: '12:15', name: 'Fullbody Activation', meta: 'Lisa · 1 h', taken: 3, cap: 6, price: 13 },
+    { time: '18:00', name: 'IntenseTraining', meta: 'Lisa · 45 min', taken: 4, cap: 6, price: 13 },
+    { time: '19:30', name: 'Coaching privé', meta: 'Lisa · 1 h · individuel', taken: 1, cap: 1, price: 30 }
+  ]
+];
+
+class Component extends DCLogic {
+  state = {
+    step: 1, weekIdx: 0, day: 1, slot: 0, qty: 1, promo: false,
+    mode: 'invite', first: false, cgv: false, pay: 'card',
+    form: { nom: '', email: '', tel: '', mdp: '' },
+    card: { num: '', exp: '', cvc: '', holder: '' }
+  };
+
+  setField(group, key, v) {
+    this.setState((s) => ({ [group]: Object.assign({}, s[group], { [key]: v }) }));
+  }
+
+  go(step) {
+    const s = this.state;
+    if (step === 3 && (!s.form.nom || !s.form.email)) return;
+    this.setState({ step });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  raw() { return DAYS[(this.state.weekIdx * 6 + this.state.day) % DAYS.length]; }
+
+  renderVals() {
+    const st = this.state;
+    const wk = WEEKS[st.weekIdx];
+    const raw = this.raw();
+    const chosen = raw[st.slot] || raw[0];
+    const promoActive = st.promo && st.qty >= 4;
+    const sub = chosen.price * st.qty;
+    const total = sub * (promoActive ? 0.9 : 1);
+    const labels = ['Créneau', 'Infos', 'Paiement', 'Confirmé'];
+    const field = (key, label, ph, type, span) => ({
+      label, placeholder: ph, type: type || 'text', span: span || 'auto',
+      value: st.form[key], onChange: (e) => this.setField('form', key, e.target.value),
+      border: 'rgba(240,227,216,0.12)',
+      labelColor: st.form[key] ? SAGE : 'rgba(240,227,216,0.45)'
+    });
+    const cardField = (key, label, ph, span) => ({
+      label, placeholder: ph, span: span || 'auto',
+      value: st.card[key], onChange: (e) => this.setField('card', key, e.target.value)
+    });
+
+    const baseFields = [
+      field('nom', 'Nom et prénom', 'Camille Lartigue', 'text', 'span 2'),
+      field('email', 'E-mail', 'camille@exemple.fr', 'email'),
+      field('tel', 'Téléphone', '06 00 00 00 00', 'tel')
+    ];
+    if (st.mode === 'compte') baseFields.push(field('mdp', 'Mot de passe', '8 caractères minimum', 'password', 'span 2'));
+
+    return {
+      steps: labels.map((label, i) => {
+        const n = i + 1, on = st.step === n, done = st.step > n;
+        return {
+          num: '0' + n, label,
+          go: () => { if (done) this.go(n); },
+          cursor: done ? 'pointer' : 'default',
+          border: on ? SAGE : done ? 'rgba(125,144,106,0.35)' : 'rgba(240,227,216,0.12)',
+          bg: on ? 'rgba(125,144,106,0.12)' : 'transparent',
+          color: on ? CREAM : done ? 'rgba(240,227,216,0.6)' : 'rgba(240,227,216,0.32)',
+          numColor: on || done ? SAGE : 'rgba(240,227,216,0.3)'
+        };
+      }),
+      isStep1: st.step === 1, isStep2: st.step === 2, isStep3: st.step === 3, isStep4: st.step === 4,
+
+      prevWeek: () => this.setState({ weekIdx: Math.max(0, st.weekIdx - 1), slot: 0 }),
+      nextWeek: () => this.setState({ weekIdx: Math.min(WEEKS.length - 1, st.weekIdx + 1), slot: 0 }),
+      week: wk.map((d, i) => {
+        const on = st.day === i;
+        const set = DAYS[(st.weekIdx * 6 + i) % DAYS.length];
+        const free = set.reduce((a, s) => a + (s.cap - s.taken), 0);
+        return {
+          day: d.day, num: d.num,
+          pick: () => this.setState({ day: i, slot: 0 }),
+          bg: on ? 'rgba(125,144,106,0.14)' : 'transparent',
+          border: on ? SAGE : 'rgba(240,227,216,0.1)',
+          fg: on ? CREAM : 'rgba(240,227,216,0.7)',
+          hint: free > 0 ? free + ' pl.' : 'complet',
+          hintColor: free > 0 ? 'rgba(125,144,106,0.85)' : 'rgba(240,227,216,0.3)'
+        };
+      }),
+      slots: raw.map((s, i) => {
+        const full = s.taken >= s.cap, left = s.cap - s.taken, sel = st.slot === i && !full;
+        return {
+          time: s.time, name: s.name, meta: s.meta,
+          seats: Array.from({ length: s.cap }, (_, k) => ({
+            bg: k < s.taken ? 'rgba(240,227,216,0.16)' : sel ? SAGE : 'rgba(125,144,106,0.4)',
+            border: k < s.taken ? 'rgba(240,227,216,0.16)' : 'rgba(125,144,106,0.6)'
+          })),
+          status: full ? 'COMPLET' : left + (left > 1 ? ' PLACES' : ' PLACE'),
+          statusColor: full ? 'rgba(240,227,216,0.4)' : SAGE,
+          border: sel ? SAGE : 'rgba(240,227,216,0.12)',
+          bg: sel ? 'rgba(125,144,106,0.1)' : 'transparent',
+          nameColor: sel ? CREAM : 'rgba(240,227,216,0.78)',
+          opacity: full ? '0.4' : '1',
+          cursor: full ? 'not-allowed' : 'pointer',
+          pick: full ? undefined : () => this.setState({ slot: i })
+        };
+      }),
+      step1Hint: chosen.name + ' · ' + wk[st.day].long + ' · ' + chosen.time,
+      toStep1: () => this.go(1),
+      toStep2: () => this.go(2),
+      toStep3: () => this.go(3),
+      nextBg: SAGE, nextFg: '#050505',
+
+      modes: [
+        { key: 'invite', title: 'Sans compte', sub: 'Nom, e-mail, téléphone. Le plus rapide.' },
+        { key: 'compte', title: 'Créer un compte', sub: 'Historique, réservations et code fidélité conservés.' },
+        { key: 'connexion', title: 'Se connecter', sub: 'Vos infos sont préremplies au prochain passage.' }
+      ].map((m) => ({
+        title: m.title, sub: m.sub,
+        pick: () => this.setState({ mode: m.key }),
+        border: st.mode === m.key ? SAGE : 'rgba(240,227,216,0.12)',
+        bg: st.mode === m.key ? 'rgba(125,144,106,0.1)' : 'transparent',
+        fg: st.mode === m.key ? CREAM : 'rgba(240,227,216,0.7)'
+      })),
+      fields: baseFields,
+      toggleFirst: () => this.setState({ first: !st.first }),
+      firstBg: st.first ? SAGE : 'transparent',
+      firstBorder: st.first ? SAGE : 'rgba(240,227,216,0.3)',
+      firstMark: st.first ? '✓' : '',
+      payBg: st.form.nom && st.form.email ? SAGE : 'rgba(240,227,216,0.14)',
+      payFg: st.form.nom && st.form.email ? '#050505' : 'rgba(240,227,216,0.45)',
+
+      payModes: [
+        { key: 'card', title: 'Carte bancaire', tag: 'PAIEMENT SÉCURISÉ' },
+        { key: 'studio', title: 'Sur place', tag: 'PLACE BLOQUÉE 24 H' }
+      ].map((p) => ({
+        title: p.title, tag: p.tag,
+        pick: () => this.setState({ pay: p.key }),
+        border: st.pay === p.key ? SAGE : 'rgba(240,227,216,0.12)',
+        bg: st.pay === p.key ? 'rgba(125,144,106,0.1)' : 'transparent',
+        fg: st.pay === p.key ? CREAM : 'rgba(240,227,216,0.7)'
+      })),
+      showCard: st.pay === 'card',
+      showTransfer: st.pay === 'studio',
+      cardFields: [
+        cardField('holder', 'Titulaire', 'CAMILLE LARTIGUE', 'span 2'),
+        cardField('num', 'Numéro de carte', '4242 4242 4242 4242', 'span 2'),
+        cardField('exp', 'Expiration', '09 / 28'),
+        cardField('cvc', 'CVC', '•••')
+      ],
+      toggleCgv: () => this.setState({ cgv: !st.cgv }),
+      cgvBg: st.cgv ? SAGE : 'transparent',
+      cgvBorder: st.cgv ? SAGE : 'rgba(240,227,216,0.3)',
+      cgvMark: st.cgv ? '✓' : '',
+      confirmBg: st.cgv ? SAGE : 'rgba(240,227,216,0.14)',
+      confirmFg: st.cgv ? '#050505' : 'rgba(240,227,216,0.45)',
+      confirmLabel: st.pay === 'card' ? 'Payer ' + eur(total) : 'Bloquer ma place',
+      confirm: () => { if (st.cgv) this.go(4); },
+
+      ticket: { time: chosen.time, dayLong: wk[st.day].long },
+      ticketRows: [
+        { k: 'COURS', v: chosen.name },
+        { k: 'AVEC', v: 'Lisa' },
+        { k: 'SÉANCES', v: st.qty + (st.qty > 1 ? ' séances' : ' séance') },
+        { k: st.pay === 'card' ? 'PAYÉ' : 'À RÉGLER SUR PLACE', v: eur(total) }
+      ],
+      nextSteps: [
+        { num: '01', text: 'Un e-mail de confirmation part sur ' + (st.form.email || 'votre adresse') + ', avec le créneau et l\'adresse du studio.' },
+        { num: '02', text: st.first ? 'Lisa vous appelle avant la séance pour cadrer vos objectifs et adapter la charge.' : 'Arrivez cinq minutes avant : tapis, matériel et eau sont sur place.' },
+        { num: '03', text: 'Annulation ou report gratuits jusqu\'à 12 h avant le cours, depuis le lien de l\'e-mail.' }
+      ],
+      restart: () => this.setState({ step: 1, cgv: false, qty: 1, promo: false }),
+
+      qty: st.qty,
+      inc: () => this.setState({ qty: Math.min(10, st.qty + 1) }),
+      dec: () => this.setState({ qty: Math.max(1, st.qty - 1) }),
+      applyPromo: () => this.setState({ promo: !st.promo }),
+      promoLabel: promoActive ? 'PERFORM10 ✓ −10 %' : st.promo ? 'VALABLE DÈS 4 SÉANCES' : 'CODE PERFORM10',
+      promoBorder: promoActive ? SAGE : 'rgba(240,227,216,0.25)',
+      promoColor: promoActive ? SAGE : DIM,
+      lines: [
+        { k: chosen.name, v: eur(chosen.price) + ' × ' + st.qty, color: 'rgba(240,227,216,0.72)' },
+        { k: promoActive ? 'Remise PERFORM10' : 'Sous-total', v: promoActive ? '−' + eur(sub * 0.1) : eur(sub), color: promoActive ? SAGE : 'rgba(240,227,216,0.72)' }
+      ],
+      cart: {
+        title: chosen.name,
+        when: wk[st.day].day + ' ' + wk[st.day].num + ' · ' + chosen.time,
+        total: eur(total)
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<script src="./image-slot.js"></script>
+<style>
+  body { margin: 0; background: #F0E3D8; color: #141311; -webkit-font-smoothing: antialiased; }
+  a { color: #141311; text-decoration: none; }
+  a:hover { color: #5F6B4C; }
+  ::selection { background: #7D906A; color: #F0E3D8; }
+  @keyframes b-slide { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  .b-rail { scrollbar-width: none; }
+  .b-rail::-webkit-scrollbar { display: none; }
+</style>
+</helmet>
+
+<div style="background: #F0E3D8; color: #141311; font-family: 'Instrument Sans', system-ui, sans-serif; overflow-x: hidden;">
+
+  <header style="position: fixed; top: 0; left: 0; right: 0; z-index: 80; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px 30px; padding: 20px 34px; background: rgba(240,227,216,0.86); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(20,19,17,0.12);">
+    <img src="./logo-dark.png" alt="BASE — Coaching · Mouvement · Performance" style="height: 34px; width: auto; display: block;" />
+    <div style="display: flex; align-items: center; flex-wrap: wrap; gap: 12px 24px; margin-left: auto;">
+      <div style="display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;">
+        <a href="#studio" style="color: rgba(20,19,17,0.65);" style-hover="color: #141311;">Studio</a>
+        <a href="#cours" style="color: rgba(20,19,17,0.65);" style-hover="color: #141311;">Cours</a>
+        <a href="#tarifs" style="color: rgba(20,19,17,0.65);" style-hover="color: #141311;">Tarifs</a>
+        <a href="#lisa" style="color: rgba(20,19,17,0.65);" style-hover="color: #141311;">Lisa</a>
+      </div>
+      <a href="#reserver" style="white-space: nowrap; font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 12px 20px; background: #141311; color: #F0E3D8; border-radius: 999px; transition: background 240ms ease;" style-hover="background: #7D906A; color: #141311;">Réserver · 13€</a>
+    </div>
+  </header>
+
+  <section data-screen-label="Hero éditorial" style="padding: 132px 34px 0;">
+    <div data-reveal="1" data-delay="0" style="opacity: 0; transform: translateY(26px); transition: opacity 800ms cubic-bezier(0.16,1,0.3,1), transform 800ms cubic-bezier(0.16,1,0.3,1); display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-bottom: 18px;">
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(20,19,17,0.55);">Seignosse · Landes</div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(20,19,17,0.55);">Smallgroups &amp; coaching privé</div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: #5F6B4C;">Depuis 2023</div>
+    </div>
+    <h1 data-reveal="1" data-delay="100" style="opacity: 0; transform: translateY(30px); transition: opacity 900ms cubic-bezier(0.16,1,0.3,1), transform 900ms cubic-bezier(0.16,1,0.3,1); margin: 0; font-family: 'Jost', sans-serif; font-weight: 200; font-size: clamp(58px, 15.5vw, 260px); line-height: 0.82; letter-spacing: -0.01em; text-transform: uppercase;">Six<br />personnes<br />maximum</h1>
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; align-items: end; padding: 30px 0 0;">
+      <p data-reveal="1" data-delay="200" style="opacity: 0; transform: translateY(24px); transition: opacity 800ms cubic-bezier(0.16,1,0.3,1), transform 800ms cubic-bezier(0.16,1,0.3,1); margin: 0; max-width: 480px; font-size: 18px; line-height: 1.65; color: rgba(20,19,17,0.72); text-wrap: pretty;">Renforcement musculaire et préparation physique en petits groupes, au sein d'un centre thérapeutique. Une coach, du matériel sérieux, aucun abonnement.</p>
+      <div data-reveal="1" data-delay="260" style="opacity: 0; transform: translateY(24px); transition: opacity 800ms cubic-bezier(0.16,1,0.3,1), transform 800ms cubic-bezier(0.16,1,0.3,1); display: flex; justify-content: flex-end; gap: 12px; flex-wrap: wrap;">
+        <a href="#reserver" style="font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 17px 30px; background: #7D906A; color: #141311; border-radius: 999px; transition: transform 240ms cubic-bezier(0.16,1,0.3,1), background 240ms ease;" style-hover="background: #141311; color: #F0E3D8; transform: translateY(-3px);">Réserver une séance</a>
+        <a href="#cours" style="font-size: 12px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; padding: 17px 30px; border: 1px solid rgba(20,19,17,0.3); border-radius: 999px; transition: border-color 240ms ease;" style-hover="border-color: #141311;">Les trois cours</a>
+      </div>
+    </div>
+    <div data-reveal="1" data-delay="120" style="opacity: 0; transform: translateY(30px); transition: opacity 900ms cubic-bezier(0.16,1,0.3,1), transform 900ms cubic-bezier(0.16,1,0.3,1); position: relative; height: min(64vh, 620px); margin-top: 34px; overflow: hidden;">
+      <image-slot id="b-hero" shape="rect" placeholder="Photo large — la salle en action (16:9)" style="position: absolute; inset: 0;"></image-slot>
+      <div style="position: absolute; left: 22px; bottom: 20px; pointer-events: none; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(240,227,216,0.9); mix-blend-mode: difference;">01 — Le studio, 2 rue de l'Estanh</div>
+    </div>
+  </section>
+
+  <div style="overflow: hidden; white-space: nowrap; padding: 20px 0; margin: 48px 0; background: #A79483;">
+    <div style="display: inline-flex; gap: 46px; animation: b-slide 32s linear infinite; font-family: 'Jost', sans-serif; font-weight: 300; font-size: 34px; letter-spacing: 0.14em; text-transform: uppercase; color: #141311;">
+      <span>Fullbody Activation</span><span style="color: #F0E3D8;">·</span><span>IntenseTraining</span><span style="color: #F0E3D8;">·</span><span>100% Fessiers / Cuisses</span><span style="color: #F0E3D8;">·</span><span>Coaching privé</span><span style="color: #F0E3D8;">·</span>
+      <span>Fullbody Activation</span><span style="color: #F0E3D8;">·</span><span>IntenseTraining</span><span style="color: #F0E3D8;">·</span><span>100% Fessiers / Cuisses</span><span style="color: #F0E3D8;">·</span><span>Coaching privé</span><span style="color: #F0E3D8;">·</span>
+    </div>
+  </div>
+
+  <section id="studio" data-screen-label="Le studio" style="padding: 0 34px 100px;">
+    <div style="display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 60px; align-items: start;">
+      <div data-reveal="1" data-delay="0" style="opacity: 0; transform: translateY(24px); transition: opacity 800ms cubic-bezier(0.16,1,0.3,1), transform 800ms cubic-bezier(0.16,1,0.3,1); position: sticky; top: 120px; display: flex; flex-direction: column; gap: 22px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: #5F6B4C;">02 — LE STUDIO</div>
+        <h2 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 200; font-size: clamp(38px, 5.6vw, 88px); line-height: 0.92; letter-spacing: 0; text-transform: uppercase;">Un lieu<br />qui ne crie<br />pas.</h2>
+        <p style="margin: 0; max-width: 400px; font-size: 16px; line-height: 1.75; color: rgba(20,19,17,0.65); text-wrap: pretty;">Pas de miroirs à perte de vue ni de musique saturée : un espace de travail installé dans un centre thérapeutique, du matériel de fitness et de musculation haut de gamme, et six personnes par créneau.</p>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 2px;">
+        <sc-for list="{{ studioBlocks }}" as="s" hint-placeholder-count="3">
+          <div data-reveal="1" data-delay="{{ s.delay }}" style="opacity: 0; transform: translateY(26px); transition: opacity 800ms cubic-bezier(0.16,1,0.3,1), transform 800ms cubic-bezier(0.16,1,0.3,1); display: grid; grid-template-columns: 1fr 1fr;">
+            <div style="padding: 34px 32px; background: {{ s.bg }}; color: {{ s.fg }}; display: flex; flex-direction: column; gap: 14px; min-height: 260px;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; opacity: 0.6;">{{ s.tag }}</div>
+              <div style="font-family: 'Jost', sans-serif; font-weight: 300; font-size: 30px; line-height: 1.05; letter-spacing: 0.02em; text-transform: uppercase;">{{ s.title }}</div>
+              <p style="margin: auto 0 0; font-size: 14px; line-height: 1.7; opacity: 0.72; text-wrap: pretty;">{{ s.body }}</p>
+            </div>
+            <div style="position: relative; min-height: 260px;">
+              <image-slot id="{{ s.slot }}" shape="rect" placeholder="{{ s.photo }}" style="position: absolute; inset: 0;"></image-slot>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <section id="cours" data-screen-label="Les cours (rail horizontal)" style="padding: 0 0 100px;">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; flex-wrap: wrap; padding: 0 34px 26px;">
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: #5F6B4C;">03 — LES COURS</div>
+        <h2 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 200; font-size: clamp(38px, 5.6vw, 88px); line-height: 0.92; text-transform: uppercase;">Quatre façons<br />de transpirer</h2>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <div onClick="{{ railPrev }}" style="width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(20,19,17,0.28); border-radius: 50%; cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: all 240ms ease;" style-hover="background: #141311; color: #F0E3D8;">←</div>
+        <div onClick="{{ railNext }}" style="width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(20,19,17,0.28); border-radius: 50%; cursor: pointer; font-family: 'JetBrains Mono', monospace; transition: all 240ms ease;" style-hover="background: #141311; color: #F0E3D8;">→</div>
+      </div>
+    </div>
+    <div id="b-rail" class="b-rail" style="display: flex; gap: 2px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 0 34px 10px;">
+      <sc-for list="{{ courses }}" as="c" hint-placeholder-count="4">
+        <div style="flex: 0 0 min(74vw, 520px); scroll-snap-align: start; display: flex; flex-direction: column; background: {{ c.bg }}; color: {{ c.fg }};">
+          <div style="position: relative; aspect-ratio: 4/3;">
+            <image-slot id="{{ c.slot }}" shape="rect" placeholder="{{ c.photo }}" style="position: absolute; inset: 0;"></image-slot>
+          </div>
+          <div style="padding: 30px 30px 34px; display: flex; flex-direction: column; gap: 16px; flex: 1;">
+            <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px;">
+              <div style="font-family: 'Jost', sans-serif; font-weight: 300; font-size: 30px; line-height: 1.05; letter-spacing: 0.02em; text-transform: uppercase;">{{ c.name }}</div>
+              <div style="font-family: 'Jost', sans-serif; font-weight: 300; font-size: 38px;">{{ c.price }}</div>
+            </div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.16em; opacity: 0.6;">{{ c.dur }}</div>
+            <p style="margin: 0; font-size: 15px; line-height: 1.7; opacity: 0.75; text-wrap: pretty;">{{ c.body }}</p>
+            <a href="#reserver" style="margin-top: auto; width: fit-content; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding-bottom: 5px; border-bottom: 1px solid {{ c.rule }}; color: {{ c.fg }};">Réserver ce cours →</a>
+          </div>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="tarifs" data-screen-label="Tarifs" style="background: #141311; color: #F0E3D8; padding: 100px 34px;">
+    <div data-reveal="1" data-delay="0" style="opacity: 0; transform: translateY(24px); transition: opacity 800ms cubic-bezier(0.16,1,0.3,1), transform 800ms cubic-bezier(0.16,1,0.3,1); display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; flex-wrap: wrap; margin-bottom: 50px;">
+      <h2 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 200; font-size: clamp(38px, 6vw, 96px); line-height: 0.9; text-transform: uppercase;">Prix nets,<br />sans piège</h2>
+      <p style="margin: 0; max-width: 360px; font-size: 15px; line-height: 1.7; color: rgba(240,227,216,0.6); text-wrap: pretty;">Aucune formule mensuelle, aucun engagement. Le code PERFORM10 enlève 10 % dès quatre séances réservées.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2px;">
+      <sc-for list="{{ prices }}" as="p" hint-placeholder-count="3">
+        <div data-reveal="1" data-delay="{{ p.delay }}" style="opacity: 0; transform: translateY(26px); transition: opacity 800ms cubic-bezier(0.16,1,0.3,1), transform 800ms cubic-bezier(0.16,1,0.3,1); padding: 36px 32px; background: {{ p.bg }}; color: {{ p.fg }}; outline: 1px solid rgba(240,227,216,0.12); display: flex; flex-direction: column; gap: 20px; min-height: 320px;">
+          <div style="display: flex; justify-content: space-between; align-items: baseline; gap: 12px;">
+            <div style="font-family: 'Jost', sans-serif; font-size: 19px; letter-spacing: 0.1em; text-transform: uppercase;">{{ p.name }}</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; opacity: 0.6;">{{ p.badge }}</div>
+          </div>
+          <div style="font-family: 'Jost', sans-serif; font-weight: 200; font-size: 74px; line-height: 0.85;">{{ p.price }}</div>
+          <div style="height: 7px; background-image: repeating-conic-gradient({{ p.motif }} 0% 25%, transparent 0% 50%); background-size: 4px 4px;"></div>
+          <p style="margin: 0; font-size: 14px; line-height: 1.7; opacity: 0.72; text-wrap: pretty;">{{ p.detail }}</p>
+          <a href="#reserver" style="margin-top: auto; text-align: center; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 15px; border-radius: 999px; background: {{ p.ctaBg }}; color: {{ p.ctaFg }}; border: 1px solid {{ p.ctaBorder }};">{{ p.cta }}</a>
+        </div>
+      </sc-for>
+    </div>
+  </section>
+
+  <section id="lisa" data-screen-label="Lisa" style="padding: 0;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; align-items: stretch;">
+      <div style="position: relative; min-height: 74vh;">
+        <image-slot id="b-lisa" shape="rect" placeholder="Portrait Lisa — plein cadre" style="position: absolute; inset: 0;"></image-slot>
+      </div>
+      <div data-reveal="1" data-delay="0" style="opacity: 0; transform: translateY(24px); transition: opacity 800ms cubic-bezier(0.16,1,0.3,1), transform 800ms cubic-bezier(0.16,1,0.3,1); padding: 80px 46px; display: flex; flex-direction: column; justify-content: center; gap: 24px; background: #F0E3D8;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: #5F6B4C;">05 — VOTRE COACH</div>
+        <h2 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 200; font-size: clamp(38px, 5.2vw, 82px); line-height: 0.92; text-transform: uppercase;">Lisa</h2>
+        <p style="margin: 0; max-width: 460px; font-size: 17px; line-height: 1.7; color: rgba(20,19,17,0.75); text-wrap: pretty;">Originaire de la région bordelaise, passée par le pôle athlétisme de Talence comme sportive de haut niveau, puis diplômée BPJEPS mention cours collectifs et haltérophilie.</p>
+        <p style="margin: 0; max-width: 460px; font-size: 15px; line-height: 1.75; color: rgba(20,19,17,0.55); text-wrap: pretty;">Bienveillante et portée sur le challenge, elle vous dirige vers le cours adapté à votre objectif : perte de poids, remise en forme, préparation physique, travail postural.</p>
+        <div style="display: flex; gap: 2px; margin-top: 10px;">
+          <sc-for list="{{ facts }}" as="f" hint-placeholder-count="3">
+            <div style="flex: 1; padding: 18px 16px; border: 1px solid rgba(20,19,17,0.18); display: flex; flex-direction: column; gap: 6px;">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; color: #5F6B4C;">{{ f.v }}</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 8.5px; letter-spacing: 0.14em; color: rgba(20,19,17,0.5);">{{ f.k }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reserver" data-screen-label="Réservation" style="padding: 100px 34px;">
+    <div data-reveal="1" data-delay="0" style="opacity: 0; transform: translateY(24px); transition: opacity 800ms cubic-bezier(0.16,1,0.3,1), transform 800ms cubic-bezier(0.16,1,0.3,1); display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; flex-wrap: wrap; margin-bottom: 34px;">
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: #5F6B4C;">06 — RÉSERVATION</div>
+        <h2 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 200; font-size: clamp(38px, 5.6vw, 88px); line-height: 0.92; text-transform: uppercase;">Le créneau<br />qui vous va</h2>
+      </div>
+      <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.14em; color: rgba(20,19,17,0.55);">SEMAINE DU 31 AOÛT · PAIEMENT EN LIGNE</div>
+    </div>
+    <div style="display: grid; grid-template-columns: 1fr 320px; gap: 2px; border: 1px solid rgba(20,19,17,0.16);">
+      <div style="padding: 26px;">
+        <div style="display: grid; grid-template-columns: repeat(6, 1fr); gap: 2px; margin-bottom: 20px;">
+          <sc-for list="{{ week }}" as="d" hint-placeholder-count="6">
+            <div onClick="{{ d.pick }}" style="padding: 14px 8px; text-align: center; cursor: pointer; border: 1px solid {{ d.border }}; background: {{ d.bg }}; border-radius: 2px; transition: all 240ms cubic-bezier(0.16,1,0.3,1);">
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: rgba(20,19,17,0.5);">{{ d.day }}</div>
+              <div style="font-family: 'Jost', sans-serif; font-size: 22px; color: {{ d.fg }};">{{ d.num }}</div>
+            </div>
+          </sc-for>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+          <sc-for list="{{ slots }}" as="s" hint-placeholder-count="4">
+            <div onClick="{{ s.pick }}" style="display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 18px 20px; cursor: {{ s.cursor }}; border: 1px solid {{ s.border }}; background: {{ s.bg }}; opacity: {{ s.opacity }}; border-radius: 2px; transition: all 240ms cubic-bezier(0.16,1,0.3,1);">
+              <div style="display: flex; align-items: center; gap: 22px;">
+                <div style="font-family: 'JetBrains Mono', monospace; font-size: 16px; min-width: 52px;">{{ s.time }}</div>
+                <div style="display: flex; flex-direction: column; gap: 3px;">
+                  <div style="font-family: 'Jost', sans-serif; font-size: 18px; letter-spacing: 0.05em; text-transform: uppercase;">{{ s.name }}</div>
+                  <div style="font-size: 12px; color: rgba(20,19,17,0.5);">{{ s.meta }}</div>
+                </div>
+              </div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: {{ s.statusColor }};">{{ s.status }}</div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="padding: 26px; background: #A79483; display: flex; flex-direction: column; gap: 18px;">
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: rgba(20,19,17,0.6);">RÉCAPITULATIF</div>
+        <div style="font-family: 'Jost', sans-serif; font-weight: 300; font-size: 30px; line-height: 1.05; letter-spacing: 0.02em; text-transform: uppercase;">{{ cart.title }}</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.1em; color: #3E4632;">{{ cart.when }}</div>
+        <div style="height: 7px; background-image: repeating-conic-gradient(rgba(20,19,17,0.5) 0% 25%, transparent 0% 50%); background-size: 4px 4px;"></div>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px;">
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: rgba(20,19,17,0.6);">SÉANCES</div>
+          <div style="display: flex; align-items: center; gap: 2px;">
+            <div onClick="{{ dec }}" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(20,19,17,0.3); cursor: pointer; font-family: 'JetBrains Mono', monospace;" style-hover="background: #141311; color: #F0E3D8;">−</div>
+            <div style="width: 40px; height: 32px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(20,19,17,0.3); font-family: 'JetBrains Mono', monospace;">{{ qty }}</div>
+            <div onClick="{{ inc }}" style="width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border: 1px solid rgba(20,19,17,0.3); cursor: pointer; font-family: 'JetBrains Mono', monospace;" style-hover="background: #141311; color: #F0E3D8;">+</div>
+          </div>
+        </div>
+        <div onClick="{{ applyPromo }}" style="text-align: center; padding: 11px; border: 1px dashed {{ promoBorder }}; cursor: pointer; font-family: 'JetBrains Mono', monospace; font-size: 9.5px; letter-spacing: 0.14em; color: {{ promoColor }};">{{ promoLabel }}</div>
+        <div style="margin-top: auto; display: flex; flex-direction: column; gap: 12px;">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; padding-top: 14px; border-top: 1px solid rgba(20,19,17,0.25);">
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; color: rgba(20,19,17,0.6);">TOTAL</div>
+            <div style="font-family: 'Jost', sans-serif; font-weight: 300; font-size: 38px;">{{ cart.total }}</div>
+          </div>
+          <div style="text-align: center; padding: 16px; background: #141311; color: #F0E3D8; border-radius: 999px; cursor: pointer; font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; transition: background 240ms ease;" style-hover="background: #7D906A; color: #141311;">Ajouter au panier</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-screen-label="Avis et FAQ" style="padding: 0 34px 100px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2px; margin-bottom: 60px;">
+      <sc-for list="{{ quotes }}" as="q" hint-placeholder-count="3">
+        <div data-reveal="1" data-delay="{{ q.delay }}" style="opacity: 0; transform: translateY(26px); transition: opacity 800ms cubic-bezier(0.16,1,0.3,1), transform 800ms cubic-bezier(0.16,1,0.3,1); padding: 34px 30px; border: 1px solid rgba(20,19,17,0.16); display: flex; flex-direction: column; gap: 18px; min-height: 240px;">
+          <div style="font-family: 'Jost', sans-serif; font-weight: 300; font-size: 22px; line-height: 1.4; text-wrap: pretty;">« {{ q.text }} »</div>
+          <div style="margin-top: auto; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.14em; color: rgba(20,19,17,0.5);">{{ q.meta }}</div>
+        </div>
+      </sc-for>
+    </div>
+    <div style="display: grid; grid-template-columns: 0.8fr 1.2fr; gap: 50px; align-items: start;">
+      <h2 style="margin: 0; font-family: 'Jost', sans-serif; font-weight: 200; font-size: clamp(32px, 4.4vw, 68px); line-height: 0.95; text-transform: uppercase;">Avant<br />de venir</h2>
+      <div style="display: flex; flex-direction: column;">
+        <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="4">
+          <div onClick="{{ f.toggle }}" style="border-top: 1px solid rgba(20,19,17,0.18); padding: 22px 2px; cursor: pointer;">
+            <div style="display: flex; align-items: center; justify-content: space-between; gap: 20px;">
+              <div style="font-family: 'Jost', sans-serif; font-size: 21px; letter-spacing: 0.01em; color: {{ f.color }}; transition: color 240ms ease;">{{ f.q }}</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 15px; color: #5F6B4C; transform: {{ f.rot }}; transition: transform 320ms cubic-bezier(0.16,1,0.3,1);">+</div>
+            </div>
+            <sc-if value="{{ f.open }}" hint-placeholder-val="{{ false }}">
+              <p style="margin: 12px 0 2px; max-width: 620px; font-size: 15px; line-height: 1.75; color: rgba(20,19,17,0.6); text-wrap: pretty;">{{ f.a }}</p>
+            </sc-if>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <footer style="background: #141311; color: #F0E3D8; padding: 70px 34px 34px; display: flex; flex-direction: column; gap: 46px;">
+    <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 30px; flex-wrap: wrap;">
+      <img src="./logo-light.png" alt="BASE" style="height: 82px; width: auto; display: block;" />
+      <a href="#reserver" style="font-family: 'Jost', sans-serif; font-weight: 200; font-size: clamp(28px, 4vw, 62px); text-transform: uppercase; color: #F0E3D8; padding-bottom: 8px; border-bottom: 1px solid rgba(240,227,216,0.3); transition: color 240ms ease, border-color 240ms ease;" style-hover="color: #7D906A; border-color: #7D906A;">Réserver →</a>
+    </div>
+    <div style="display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; padding-top: 24px; border-top: 1px solid rgba(240,227,216,0.14); font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(240,227,216,0.45);">
+      <div>2 rue de l'Estanh · 40510 Seignosse</div>
+      <div>06 18 01 90 26 · infos@coaching-lcperform.fr</div>
+      <div>© 2026 BASE</div>
+    </div>
+  </footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{}">
+const SAGE = '#7D906A';
+const INK = '#141311';
+const CREAM = '#F0E3D8';
+const eur = (n) => (Math.round(n * 100) / 100).toFixed(2).replace('.', ',').replace(',00', '') + '€';
+
+class Component extends DCLogic {
+  state = { day: 1, slot: 0, faq: 0, qty: 1, promo: false };
+
+  componentDidMount() { this.reveal(); }
+  componentDidUpdate() { this.reveal(); }
+
+  reveal() {
+    const els = Array.from(document.querySelectorAll('[data-reveal]'));
+    if (!els.length) return;
+    if (!this._io) {
+      this._io = new IntersectionObserver((entries) => {
+        entries.forEach((e) => {
+          if (!e.isIntersecting) return;
+          const el = e.target;
+          el.style.transitionDelay = (el.getAttribute('data-delay') || 0) + 'ms';
+          el.style.opacity = '1';
+          el.style.transform = 'none';
+          this._io.unobserve(el);
+        });
+      }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
+    }
+    els.forEach((el) => {
+      if (el.dataset.revealed) return;
+      el.dataset.revealed = '1';
+      this._io.observe(el);
+    });
+    clearTimeout(this._fb);
+    this._fb = setTimeout(() => {
+      document.querySelectorAll('[data-reveal]').forEach((el) => { el.style.opacity = '1'; el.style.transform = 'none'; });
+    }, 2600);
+  }
+
+  componentWillUnmount() { if (this._io) this._io.disconnect(); clearTimeout(this._fb); }
+
+  scrollRail(dir) {
+    const rail = document.getElementById('b-rail');
+    if (rail) rail.scrollBy({ left: dir * Math.min(rail.clientWidth * 0.8, 540), behavior: 'smooth' });
+  }
+
+  renderVals() {
+    const st = this.state;
+    const week = ['LUN 31', 'MAR 01', 'MER 02', 'JEU 03', 'VEN 04', 'SAM 05'];
+    const sets = [
+      [
+        { time: '09:00', name: 'Fullbody Activation', meta: 'Lisa · 1 h · 6 places', taken: 4, cap: 6, price: 13 },
+        { time: '12:15', name: 'IntenseTraining', meta: 'Lisa · 45 min · 6 places', taken: 6, cap: 6, price: 13 },
+        { time: '17:30', name: '100% Fessiers / Cuisses', meta: 'Lisa · 45 min · 6 places', taken: 2, cap: 6, price: 13 },
+        { time: '19:00', name: 'Coaching privé', meta: 'Lisa · 1 h · individuel', taken: 0, cap: 1, price: 30 }
+      ],
+      [
+        { time: '07:30', name: 'IntenseTraining', meta: 'Lisa · 45 min · 6 places', taken: 3, cap: 6, price: 13 },
+        { time: '10:00', name: 'Fullbody Activation', meta: 'Lisa · 45 min · 6 places', taken: 5, cap: 6, price: 13 },
+        { time: '14:00', name: 'Coaching privé', meta: 'Lisa · 1 h · duo possible', taken: 0, cap: 1, price: 30 },
+        { time: '18:15', name: '100% Fessiers / Cuisses', meta: 'Lisa · 45 min · 6 places', taken: 6, cap: 6, price: 13 }
+      ]
+    ];
+    const raw = sets[st.day % 2];
+
+    const faqData = [
+      { q: 'Comment marche PERFORM10 ?', a: "Réservez quatre séances ou plus et le code applique 10 % de remise sur la commande, avant paiement." },
+      { q: 'Faut-il créer un compte ?', a: "Non. Nom, e-mail et téléphone suffisent. Le compte sert seulement à retrouver vos réservations." },
+      { q: 'Je débute complètement.', a: "Commencez par Fullbody Activation : rythme progressif, charges ajustées, six personnes maximum." },
+      { q: 'Le coaching privé en duo ?', a: "Oui, sur demande : une heure, 30 € par personne, construite autour de votre objectif." }
+    ];
+
+    const slots = raw.map((s, i) => {
+      const full = s.taken >= s.cap;
+      const left = s.cap - s.taken;
+      const sel = st.slot === i && !full;
+      return {
+        time: s.time, name: s.name, meta: s.meta,
+        status: full ? 'COMPLET' : left === s.cap ? 'DISPONIBLE' : left + (left > 1 ? ' PLACES' : ' PLACE'),
+        statusColor: full ? 'rgba(20,19,17,0.45)' : '#5F6B4C',
+        border: sel ? INK : 'rgba(20,19,17,0.16)',
+        bg: sel ? 'rgba(125,144,106,0.16)' : 'transparent',
+        opacity: full ? '0.42' : '1',
+        cursor: full ? 'not-allowed' : 'pointer',
+        pick: full ? undefined : () => this.setState({ slot: i })
+      };
+    });
+
+    const chosen = raw[st.slot] || raw[0];
+    const promoActive = st.promo && st.qty >= 4;
+    const total = chosen.price * st.qty * (promoActive ? 0.9 : 1);
+
+    return {
+      studioBlocks: [
+        { tag: 'CENTRE THÉRAPEUTIQUE', title: 'Un studio, pas une salle', body: "Installé au sein d'un centre thérapeutique à Seignosse, l'espace est dédié à la pratique encadrée.", bg: '#A79483', fg: INK, slot: 'b-studio-1', photo: 'Photo salle', delay: '0' },
+        { tag: 'MATÉRIEL', title: 'Fitness &amp; musculation', body: "Matériel de haute qualité, entretenu, adapté aussi bien au renforcement qu'à la préparation physique.", bg: 'transparent', fg: INK, slot: 'b-studio-2', photo: 'Photo matériel', delay: '80' },
+        { tag: 'AMBIANCE', title: 'Conviviale et ludique', body: "Six personnes maximum : on se connaît, on se corrige, on progresse sans se comparer.", bg: '#141311', fg: CREAM, slot: 'b-studio-3', photo: 'Photo groupe', delay: '160' }
+      ],
+      courses: [
+        { name: 'Fullbody Activation', price: '13€', dur: '45 MIN / 1 H · 6 PERSONNES', slot: 'b-cours-1', photo: 'Photo Fullbody', bg: '#A79483', fg: INK, rule: 'rgba(20,19,17,0.4)',
+          body: "Renforcement global : haut, bas du corps et sangle abdominale. Tonifier, travailler la posture, prévenir les blessures." },
+        { name: 'IntenseTraining', price: '13€', dur: '45 MIN · 6 PERSONNES', slot: 'b-cours-2', photo: 'Photo IntenseTraining', bg: '#141311', fg: CREAM, rule: 'rgba(240,227,216,0.4)',
+          body: "Renforcement, force et cardio dans la même séance. Quarante-cinq minutes pour repousser vos limites." },
+        { name: '100% Fessiers / Cuisses', price: '13€', dur: '45 MIN · 6 PERSONNES', slot: 'b-cours-3', photo: 'Photo bas du corps', bg: '#7D906A', fg: INK, rule: 'rgba(20,19,17,0.4)',
+          body: "Session dédiée au bas du corps : renforcer et tonifier la chaîne antérieure, gagner en volume." },
+        { name: 'Coaching privé', price: '30€', dur: '1 H · INDIVIDUEL OU DUO', slot: 'b-cours-4', photo: 'Photo coaching privé', bg: 'transparent', fg: INK, rule: 'rgba(20,19,17,0.4)',
+          body: "100 % personnalisé : perte de poids, remise en forme, prépa physique, travail postural, prise de masse." }
+      ],
+      railPrev: () => this.scrollRail(-1),
+      railNext: () => this.scrollRail(1),
+      prices: [
+        { name: 'Smallgroup', badge: '6 PERS. MAX', price: '13€', detail: "La séance, au choix parmi les trois cours collectifs. Durée 45 min à 1 h.", bg: 'transparent', fg: CREAM, motif: 'rgba(240,227,216,0.45)', ctaBg: 'transparent', ctaFg: CREAM, ctaBorder: 'rgba(240,227,216,0.35)', cta: 'Réserver', delay: '0' },
+        { name: '4 séances', badge: 'CODE PERFORM10', price: '46,80€', detail: "Quatre séances de Smallgroup avec 10 % de remise appliquée par le code PERFORM10.", bg: SAGE, fg: INK, motif: 'rgba(20,19,17,0.5)', ctaBg: INK, ctaFg: CREAM, ctaBorder: INK, cta: 'Réserver 4 séances', delay: '80' },
+        { name: 'Coaching privé', badge: 'INDIVIDUEL OU DUO', price: '30€', detail: "Une heure entièrement construite autour de votre objectif. Duo sur demande.", bg: 'transparent', fg: CREAM, motif: 'rgba(240,227,216,0.45)', ctaBg: 'transparent', ctaFg: CREAM, ctaBorder: 'rgba(240,227,216,0.35)', cta: 'En parler', delay: '160' }
+      ],
+      facts: [{ v: 'BPJEPS', k: 'DIPLÔME' }, { v: 'HALTÉRO', k: 'MENTION' }, { v: 'TALENCE', k: 'PÔLE ATHLÉ' }],
+      week: week.map((w, i) => {
+        const on = st.day === i;
+        const p = w.split(' ');
+        return {
+          day: p[0], num: p[1],
+          pick: () => this.setState({ day: i, slot: 0 }),
+          bg: on ? SAGE : 'transparent',
+          border: on ? SAGE : 'rgba(20,19,17,0.16)',
+          fg: INK
+        };
+      }),
+      slots,
+      qty: st.qty,
+      inc: () => this.setState({ qty: Math.min(10, st.qty + 1) }),
+      dec: () => this.setState({ qty: Math.max(1, st.qty - 1) }),
+      applyPromo: () => this.setState({ promo: !st.promo }),
+      promoLabel: promoActive ? 'PERFORM10 ✓ -10%' : st.promo ? 'DÈS 4 SÉANCES' : 'CODE PERFORM10',
+      promoBorder: promoActive ? INK : 'rgba(20,19,17,0.4)',
+      promoColor: promoActive ? INK : 'rgba(20,19,17,0.6)',
+      cart: { title: chosen.name, when: week[st.day] + ' · ' + chosen.time, total: eur(total) },
+      quotes: [
+        { text: "Six personnes par cours, ça change tout : Lisa corrige chaque mouvement.", meta: 'PLACEHOLDER · À REMPLACER', delay: '0' },
+        { text: "Je réserve mes créneaux le dimanche soir, et je n'y pense plus.", meta: 'PLACEHOLDER · À REMPLACER', delay: '80' },
+        { text: "Le coaching privé m'a remis en mouvement après des années d'arrêt.", meta: 'PLACEHOLDER · À REMPLACER', delay: '160' }
+      ],
+      faqs: faqData.map((f, i) => {
+        const open = st.faq === i;
+        return {
+          q: f.q, a: f.a, open,
+          toggle: () => this.setState({ faq: open ? -1 : i }),
+          color: open ? INK : 'rgba(20,19,17,0.78)',
+          rot: open ? 'rotate(45deg)' : 'rotate(0deg)'
+        };
+      })
+    };
+  }
+}
+
+</script>
+</body>
+</html>
